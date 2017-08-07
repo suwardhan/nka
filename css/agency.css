@@ -69,7 +69,7 @@ h6 {
 .btn-primary.active,
 .open .dropdown-toggle.btn-primary {
   color: white;
-  background-color: #fec503;
+  background-color: #f5f5f5;
   border-color: #f6bf01;
 }
 .btn-primary:active,
@@ -92,11 +92,11 @@ fieldset[disabled] .btn-primary:active,
 .btn-primary.disabled.active,
 .btn-primary[disabled].active,
 fieldset[disabled] .btn-primary.active {
-  background-color: #fed136;
+  background-color: #f5f5f5;
   border-color: #fed136;
 }
 .btn-primary .badge {
-  color: #fed136;
+  color: #f5f5f5;
   background-color: white;
 }
 .btn-xl {
