@@ -1,6 +1,3 @@
-# [Narendra Ahirrao and Associates]
-
-
-## Copyright and License
+# Narendra Ahirrao and Associates
 
 Copyright 2017 Narendra Ahirrao and Associates.
