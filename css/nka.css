@@ -21,7 +21,7 @@ body {
 
 .text-muted {color: #777}
 
-.text-primary,a {color: #eee}
+.text-primary,a {color: #ccc}
 
 p {font-size: 14px;line-height:1.75}
 
@@ -29,7 +29,7 @@ p {font-size: 14px;line-height:1.75}
 
 a,a.active,a:active,a:focus,a:hover {outline: 0}
 
-a.active,a:active,a:focus,a:hover {color: #fec503}
+a.active,a:active,a:focus,a:hover {color: #000}
 
 .img-centered {margin: 0 auto}
 
