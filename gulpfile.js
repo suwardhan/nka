@@ -1,105 +1,137 @@
-var gulp = require('gulp');
-var less = require('gulp-less');
+/* Needed gulp config */
+
+var gulp = require('gulp');  
 var sass = require('gulp-sass');
-var browserSync = require('browser-sync').create();
-var header = require('gulp-header');
-var cleanCSS = require('gulp-clean-css');
-var rename = require("gulp-rename");
 var uglify = require('gulp-uglify');
-var pkg = require('./package.json');
+var rename = require('gulp-rename');
+var notify = require('gulp-notify');
+var minifycss = require('gulp-minify-css');
+var concat = require('gulp-concat');
+var plumber = require('gulp-plumber');
+var browserSync = require('browser-sync');
+var reload = browserSync.reload;
+const sourcemaps = require('gulp-sourcemaps');
+const autoprefixer = require('gulp-autoprefixer');
 
-// Set the banner content
-var banner = ['/*!\n',
-    ' * Start Bootstrap - <%= pkg.title %> v<%= pkg.version %> (<%= pkg.homepage %>)\n',
-    ' * Copyright 2013-' + (new Date()).getFullYear(), ' <%= pkg.author %>\n',
-    ' * Licensed under <%= pkg.license.type %> (<%= pkg.license.url %>)\n',
-    ' */\n',
-    ''
-].join('');
+/* Setup scss path */
+var paths = {
+    scss: './sass/*.scss'
+};
 
-// Compile LESS files from /less into /css
-gulp.task('less', function() {
-    return gulp.src('less/agency.less')
-        .pipe(less())
-        .pipe(header(banner, { pkg: pkg }))
-        .pipe(gulp.dest('css'))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
+/* Scripts task */
+gulp.task('scripts', function() {
+  return gulp.src([
+    /* Add your JS files here, they will be combined in this order */
+    'js/vendor/jquery.min.js',
+    'js/vendor/jquery.easing.1.3.js',
+    'js/vendor/jquery.stellar.min.js',
+    'js/vendor/jquery.flexslider-min.js',
+    'js/vendor/jquery.countTo.js',
+    'js/vendor/jquery.appear.min.js',
+    'js/vendor/circle-progress.min.js',
+    'js/vendor/jquery.magnific-popup.min.js',
+    'js/vendor/owl.carousel.min.js',
+    'js/vendor/bootstrap.min.js',
+    'js/vendor/jquery.waypoints.min.js'
+    ])
+    .pipe(concat('scripts.js'))
+    .pipe(gulp.dest('js'))
+    .pipe(rename({suffix: '.min'}))
+    .pipe(uglify())
+    .pipe(gulp.dest('js'));
 });
 
-// Minify compiled CSS
-gulp.task('minify-css', ['less'], function() {
-    return gulp.src('css/agency.css')
-        .pipe(cleanCSS({ compatibility: 'ie8' }))
-        .pipe(rename({ suffix: '.min' }))
-        .pipe(gulp.dest('css'))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
+gulp.task('minify-main', function() {
+  return gulp.src([
+    /* Add your JS files here, they will be combined in this order */
+    'js/main.js'
+    ])
+    .pipe(rename({suffix: '.min'}))
+    .pipe(uglify())
+    .pipe(gulp.dest('js'));
 });
 
-// Minify JS
-gulp.task('minify-js', function() {
-    return gulp.src('js/agency.js')
-        .pipe(uglify())
-        .pipe(header(banner, { pkg: pkg }))
-        .pipe(rename({ suffix: '.min' }))
-        .pipe(gulp.dest('js'))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
+/* Sass task */
+gulp.task('sass', function () {  
+    gulp.src('scss/style.scss')
+    .pipe(plumber())
+    .pipe(sass({
+      errLogToConsole: true,
+
+      //outputStyle: 'compressed',
+      // outputStyle: 'compact',
+      // outputStyle: 'nested',
+      outputStyle: 'expanded',
+      precision: 10
+    }))
+
+    .pipe(sourcemaps.init())
+    .pipe(autoprefixer({
+        browsers: ['last 2 versions'],
+        cascade: false
+    }))
+    .pipe(gulp.dest('css'))
+
+    .pipe(rename({suffix: '.min'}))
+    .pipe(minifycss())
+    .pipe(gulp.dest('css'))
+    /* Reload the browser CSS after every change */
+    .pipe(reload({stream:true}));
 });
 
-// Copy vendor libraries from /node_modules into /vendor
-gulp.task('copy', function() {
-    gulp.src(['node_modules/bootstrap/dist/**/*', '!**/npm.js', '!**/bootstrap-theme.*', '!**/*.map'])
-        .pipe(gulp.dest('vendor/bootstrap'))
+gulp.task('merge-styles', function () {
 
-    gulp.src(['node_modules/jquery/dist/jquery.js', 'node_modules/jquery/dist/jquery.min.js'])
-        .pipe(gulp.dest('vendor/jquery'))
-
-    gulp.src([
-            'node_modules/font-awesome/**',
-            '!node_modules/font-awesome/**/*.map',
-            '!node_modules/font-awesome/.npmignore',
-            '!node_modules/font-awesome/*.txt',
-            '!node_modules/font-awesome/*.md',
-            '!node_modules/font-awesome/*.json'
+    return gulp.src([
+        'css/vendor/bootstrap.min.css',
+        'css/vendor/animate.css',
+        'css/vendor/icomoon.css',
+        'css/vendor/flexslider.css',
+        'css/vendor/owl.carousel.min.css',
+        'css/vendor/owl.theme.default.min.css',
+        'css/vendor/magnific-popup.css',
+        'css/vendor/photoswipe.css',
+        'css/vendor/default-skin.css',
+        'fonts/icomoon/style.css',
         ])
-        .pipe(gulp.dest('vendor/font-awesome'))
-})
-
-// Run everything
-gulp.task('default', ['less', 'minify-css', 'minify-js', 'copy']);
-
-// Configure the browserSync task
-gulp.task('browserSync', function() {
-    browserSync.init({
-        server: {
-            baseDir: ''
-        },
-    })
-})
-
-// Dev task with browserSync
-gulp.task('dev', ['browserSync', 'less', 'minify-css', 'minify-js'], function() {
-    gulp.watch('less/*.less', ['less']);
-    gulp.watch('css/*.css', ['minify-css']);
-    gulp.watch('js/*.js', ['minify-js']);
-    // Reloads the browser whenever HTML or JS files change
-    gulp.watch('*.html', browserSync.reload);
-    gulp.watch('js/**/*.js', browserSync.reload);
+        // .pipe(sourcemaps.init())
+        // .pipe(autoprefixer({
+        //     browsers: ['last 2 versions'],
+        //     cascade: false
+        // }))
+        .pipe(concat('styles-merged.css'))
+        .pipe(gulp.dest('css'))
+        // .pipe(rename({suffix: '.min'}))
+        // .pipe(minifycss())
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('css'))
+        .pipe(reload({stream:true}));
 });
 
-// Compiles SCSS files from /scss into /css
-// NOTE: This theme uses LESS by default. To swtich to SCSS you will need to update this gulpfile by changing the 'less' tasks to run 'sass'!
-gulp.task('sass', function() {
-    return gulp.src('scss/agency.scss')
-        .pipe(sass())
-        .pipe(header(banner, { pkg: pkg }))
-        .pipe(gulp.dest('css'))
-        .pipe(browserSync.reload({
-            stream: true
-        }))
+/* Reload task */
+gulp.task('bs-reload', function () {
+    browserSync.reload();
+});
+
+/* Prepare Browser-sync for localhost */
+gulp.task('browser-sync', function() {
+    browserSync.init(['css/*.css', 'js/*.js'], {
+        
+        proxy: 'localhost/probootstrap/format'
+        /* For a static server you would use this: */
+        /*
+        server: {
+            baseDir: './'
+        }
+        */
+    });
+});
+
+/* Watch scss, js and html files, doing different things with each. */
+gulp.task('default', ['sass', 'scripts', 'browser-sync'], function () {
+    /* Watch scss, run the sass task on change. */
+    gulp.watch(['scss/*.scss', 'scss/**/*.scss'], ['sass'])
+    /* Watch app.js file, run the scripts task on change. */
+    gulp.watch(['js/main.js'], ['minify-main'])
+    /* Watch .html files, run the bs-reload task on change. */
+    gulp.watch(['*.html'], ['bs-reload']);
 });
