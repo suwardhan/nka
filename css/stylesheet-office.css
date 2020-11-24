@@ -1,0 +1,35 @@
+html{
+	font-size: 16px;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  margin: 0;
+}
+
+.section-tabs{
+	width: 100%;
+	text-align: center;
+	position: fixed;
+	background-color: white;
+}
+
+.section-form{
+	padding: 50px 0;
+}
+
+.google-form{
+	width: 100%;
+	height: calc(100vh - 132px);
+}
+
+footer{
+	width: 100%;
+	position: fixed;
+	bottom: 0px;
+	text-align: center;
+	padding: 16px 0;
+	background-color: white;
+	border-top: 1px solid #e5e5e5;
+}
