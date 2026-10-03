@@ -1,0 +1,457 @@
+{
+  "year": 2024,
+  "updatedAt": "2026-10-03T21:09:56.238Z",
+  "timezone": "Asia/Kolkata",
+  "areaOffices": [
+    {
+      "name": "SBI RACPC Thane",
+      "count": 816
+    },
+    {
+      "name": "LIC Thane",
+      "count": 528
+    },
+    {
+      "name": "LIC Ghatkopar",
+      "count": 512
+    },
+    {
+      "name": "LIC Nariman Point",
+      "count": 422
+    },
+    {
+      "name": "SBI RACPC Kalyan",
+      "count": 389
+    },
+    {
+      "name": "LIC Borivali",
+      "count": 332
+    },
+    {
+      "name": "LIC Santacruz",
+      "count": 167
+    },
+    {
+      "name": "LIC Khaghar",
+      "count": 100
+    },
+    {
+      "name": "LIC Kalyan",
+      "count": 88
+    },
+    {
+      "name": "LIC Jogeshwari",
+      "count": 80
+    },
+    {
+      "name": "SBI Naupada branch",
+      "count": 55
+    },
+    {
+      "name": "SBI Main branch",
+      "count": 53
+    },
+    {
+      "name": "LIC Mumbai",
+      "count": 51
+    },
+    {
+      "name": "LIC Vashi",
+      "count": 51
+    },
+    {
+      "name": "LIC Badlapur",
+      "count": 29
+    },
+    {
+      "name": "SBI Naupad branch",
+      "count": 25
+    },
+    {
+      "name": "LIC Panvel",
+      "count": 18
+    },
+    {
+      "name": "Income Tax Capital Gains",
+      "count": 16
+    },
+    {
+      "name": "LIC Ghodbunder",
+      "count": 9
+    },
+    {
+      "name": "LIC Dadar",
+      "count": 8
+    },
+    {
+      "name": "Income Tax Visa",
+      "count": 4
+    },
+    {
+      "name": "KHARGHAR",
+      "count": 3
+    },
+    {
+      "name": "LIC GHODBUNDER",
+      "count": 3
+    },
+    {
+      "name": "LIC GHODBUNDER \nBRANCH",
+      "count": 3
+    },
+    {
+      "name": "LIC GHODBUNDER BRANCH",
+      "count": 3
+    },
+    {
+      "name": "LIC THANE",
+      "count": 3
+    },
+    {
+      "name": "SBI GHATKOPAR RACPC",
+      "count": 3
+    },
+    {
+      "name": "SBI RACPC CHINCHPOKLI",
+      "count": 3
+    },
+    {
+      "name": "SBI SANGAMNER BRANCH",
+      "count": 3
+    },
+    {
+      "name": "Area Office",
+      "count": 2
+    },
+    {
+      "name": "LIC GB ROAD",
+      "count": 2
+    },
+    {
+      "name": "LIC NASHIK",
+      "count": 2
+    },
+    {
+      "name": "LIC PUNE",
+      "count": 2
+    },
+    {
+      "name": "LIC PUNE BRANCH",
+      "count": 2
+    },
+    {
+      "name": "LIC VASHI",
+      "count": 2
+    },
+    {
+      "name": "NARIMAN POINT",
+      "count": 2
+    },
+    {
+      "name": "SBI AURANGABAD RACPC",
+      "count": 2
+    },
+    {
+      "name": "SBI CHENNAI BRANCH",
+      "count": 2
+    },
+    {
+      "name": "SBI CHINCHPOKALI",
+      "count": 2
+    },
+    {
+      "name": "SBI CHINCHPOKALI RACPC",
+      "count": 2
+    },
+    {
+      "name": "SBI JK GRAM BRANCH",
+      "count": 2
+    },
+    {
+      "name": "SBI RACPC CHINCHPOKALI",
+      "count": 2
+    },
+    {
+      "name": "SBI RACPC CHINCHPOKHALI",
+      "count": 2
+    },
+    {
+      "name": "AHMEDABAD RAPC",
+      "count": 1
+    },
+    {
+      "name": "CORD RACPC KALYAN",
+      "count": 1
+    },
+    {
+      "name": "GB ROAD",
+      "count": 1
+    },
+    {
+      "name": "LIC AURANGABAD",
+      "count": 1
+    },
+    {
+      "name": "LIC BHOPAL",
+      "count": 1
+    },
+    {
+      "name": "LIC GB ROAD BRANCH",
+      "count": 1
+    },
+    {
+      "name": "LIC GB ROAD THANE",
+      "count": 1
+    },
+    {
+      "name": "LIC GODHBUNDER",
+      "count": 1
+    },
+    {
+      "name": "LIC GODHBUNDER ROAD",
+      "count": 1
+    },
+    {
+      "name": "LIC JALGAON",
+      "count": 1
+    },
+    {
+      "name": "LIC THA",
+      "count": 1
+    },
+    {
+      "name": "LIC Virar",
+      "count": 1
+    },
+    {
+      "name": "MANOJ PANDEY",
+      "count": 1
+    },
+    {
+      "name": "PERSONAL",
+      "count": 1
+    },
+    {
+      "name": "PRANAY GAONKAR",
+      "count": 1
+    },
+    {
+      "name": "SBI BHAYANDER BRANCH",
+      "count": 1
+    },
+    {
+      "name": "SBI CHICHPOKALI RACPC",
+      "count": 1
+    },
+    {
+      "name": "SBI CHINCHPOKHALI",
+      "count": 1
+    },
+    {
+      "name": "SBI CHINCHPOKLI RACPC",
+      "count": 1
+    },
+    {
+      "name": "SBI DHANAULA BRANCH",
+      "count": 1
+    },
+    {
+      "name": "SBI DLF PHASE \nIV GURUGRAM",
+      "count": 1
+    },
+    {
+      "name": "SBI GHATKOPAR",
+      "count": 1
+    },
+    {
+      "name": "SBI JEKEGRAM BRANCH",
+      "count": 1
+    },
+    {
+      "name": "SBI NASHIK",
+      "count": 1
+    },
+    {
+      "name": "SBI racpc branch",
+      "count": 1
+    },
+    {
+      "name": "SBI RACPC PUNE",
+      "count": 1
+    },
+    {
+      "name": "SBI RACPC THAN",
+      "count": 1
+    },
+    {
+      "name": "SBI RACPC THANE",
+      "count": 1
+    },
+    {
+      "name": "SBI SANGAMNER",
+      "count": 1
+    },
+    {
+      "name": "SBI SARB THANE",
+      "count": 1
+    },
+    {
+      "name": "SBI SATARA",
+      "count": 1
+    },
+    {
+      "name": "SBI WAGLE ESTATE",
+      "count": 1
+    }
+  ],
+  "visitPersons": [
+    {
+      "name": "Prashant",
+      "count": 1330
+    },
+    {
+      "name": "Amit",
+      "count": 843
+    },
+    {
+      "name": "Akshay",
+      "count": 720
+    },
+    {
+      "name": "Sushant",
+      "count": 476
+    },
+    {
+      "name": "Rahul",
+      "count": 138
+    },
+    {
+      "name": "Rajendra",
+      "count": 55
+    },
+    {
+      "name": "Swapnil",
+      "count": 55
+    },
+    {
+      "name": "Sagar",
+      "count": 36
+    },
+    {
+      "name": "SANTOSH",
+      "count": 15
+    },
+    {
+      "name": "---",
+      "count": 12
+    },
+    {
+      "name": "RAHUL",
+      "count": 11
+    },
+    {
+      "name": "Santosh",
+      "count": 10
+    },
+    {
+      "name": "AMIT",
+      "count": 9
+    },
+    {
+      "name": "SANTOSH KHUTE",
+      "count": 7
+    },
+    {
+      "name": "--",
+      "count": 6
+    },
+    {
+      "name": "----",
+      "count": 3
+    },
+    {
+      "name": "AKSHAY",
+      "count": 3
+    },
+    {
+      "name": "santosh",
+      "count": 3
+    },
+    {
+      "name": "SWAPNIL",
+      "count": 3
+    },
+    {
+      "name": "Rajendra /Amit",
+      "count": 2
+    },
+    {
+      "name": "Rajendra + Sir",
+      "count": 2
+    },
+    {
+      "name": "-",
+      "count": 1
+    },
+    {
+      "name": "18.12.2024",
+      "count": 1
+    },
+    {
+      "name": "Akshay/          Amit",
+      "count": 1
+    },
+    {
+      "name": "amit",
+      "count": 1
+    },
+    {
+      "name": "AMit",
+      "count": 1
+    },
+    {
+      "name": "Field Executive",
+      "count": 1
+    },
+    {
+      "name": "Parshant",
+      "count": 1
+    },
+    {
+      "name": "PRASHANT",
+      "count": 1
+    },
+    {
+      "name": "Prashant\nAkshay",
+      "count": 1
+    },
+    {
+      "name": "Prashant           Amit",
+      "count": 1
+    },
+    {
+      "name": "Rajendra / Amit",
+      "count": 1
+    },
+    {
+      "name": "SAGAR",
+      "count": 1
+    },
+    {
+      "name": "santosh khute",
+      "count": 1
+    },
+    {
+      "name": "Santosh Khute",
+      "count": 1
+    },
+    {
+      "name": "SIR",
+      "count": 1
+    },
+    {
+      "name": "Sushant\nAMIT",
+      "count": 1
+    }
+  ]
+}
