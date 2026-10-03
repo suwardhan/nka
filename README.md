@@ -4,10 +4,10 @@ Static marketing site for Government Registered Valuers and Chartered Engineers.
 
 ## Admin dashboard
 
-A passcode-gated React admin app lives in [`admin/`](admin/).
+A passcode-gated React admin app lives in [`admin-app/`](admin-app/).
 
 ```bash
-cd admin
+cd admin-app
 cp .env.example .env
 npm install
 npm run dev

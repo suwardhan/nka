@@ -2,7 +2,7 @@
 
 Aggregates the private Office-Register sheet and saves a daily JSON snapshot to this repo at:
 
-`admin/public/data/{year}.json`
+`admin/data/{year}.json`
 
 The admin UI normally reads that static JSON (fast). **Refresh data** rebuilds from the sheet and commits the file to GitHub.
 
@@ -19,7 +19,7 @@ The admin UI normally reads that static JSON (fast). **Refresh data** rebuilds f
 | `GITHUB_OWNER` | `suwardhan` (optional) |
 | `GITHUB_REPO` | `nka` (optional) |
 | `GITHUB_BRANCH` | `master` (optional) |
-| `GITHUB_FILE_PREFIX` | `admin/public/data/` (optional) |
+| `GITHUB_FILE_PREFIX` | `admin/data/` (optional) |
 
 4. Deploy → Manage deployments → Edit → **New version** → Deploy.
 5. In the editor, run `setupDailyTrigger` once (1am Asia/Kolkata daily).

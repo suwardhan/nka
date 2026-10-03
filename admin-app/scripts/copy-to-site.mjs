@@ -4,10 +4,10 @@ import { fileURLToPath } from 'node:url'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const distDir = path.resolve(__dirname, '../dist')
-const targetDir = path.resolve(__dirname, '../../admin-site')
+const targetDir = path.resolve(__dirname, '../../admin')
 
 if (!existsSync(distDir)) {
-  console.error('Missing admin/dist. Run npm run build first.')
+  console.error('Missing admin-app/dist. Run npm run build first.')
   process.exit(1)
 }
 
@@ -22,4 +22,3 @@ copyFileSync(
 )
 
 console.log(`Copied admin build to ${targetDir}`)
-console.log('Serve or publish this folder as /admin on the static host.')

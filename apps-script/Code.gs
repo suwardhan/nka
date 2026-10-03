@@ -11,7 +11,7 @@
  * - GITHUB_OWNER       default: suwardhan
  * - GITHUB_REPO        default: nka
  * - GITHUB_BRANCH      default: master
- * - GITHUB_FILE_PREFIX default: admin/public/data/
+ * - GITHUB_FILE_PREFIX default: admin/data/
  *
  * Daily trigger (IST):
  * 1. Run function setupDailyTrigger once in the editor
@@ -163,7 +163,7 @@ function commitSnapshotToGithub_(year, snapshot) {
   var owner = props.getProperty('GITHUB_OWNER') || 'suwardhan'
   var repo = props.getProperty('GITHUB_REPO') || 'nka'
   var branch = props.getProperty('GITHUB_BRANCH') || 'master'
-  var prefix = props.getProperty('GITHUB_FILE_PREFIX') || 'admin/public/data/'
+  var prefix = props.getProperty('GITHUB_FILE_PREFIX') || 'admin/data/'
   if (prefix.slice(-1) !== '/') {
     prefix += '/'
   }
