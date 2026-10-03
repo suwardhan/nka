@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { HorizontalCountChart } from '@/components/HorizontalCountChart'
+import { YearTabs } from '@/components/YearTabs'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -10,14 +11,6 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Label } from '@/components/ui/label'
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select'
 import { AVAILABLE_YEARS, DEFAULT_YEAR } from '@/config/years'
 import { logout } from '@/lib/auth'
 import {
@@ -125,8 +118,8 @@ export function DashboardPage() {
     navigate('/', { replace: true })
   }
 
-  function handleYearChange(value: string) {
-    setSearchParams({ year: value })
+  function handleYearChange(nextYear: number) {
+    setSearchParams({ year: String(nextYear) })
   }
 
   return (
@@ -149,21 +142,7 @@ export function DashboardPage() {
 
       <main className="mx-auto max-w-6xl space-y-6 px-4 py-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-          <div className="flex flex-col gap-2 sm:max-w-xs">
-            <Label htmlFor="year-filter">Year</Label>
-            <Select value={String(year)} onValueChange={handleYearChange}>
-              <SelectTrigger id="year-filter">
-                <SelectValue placeholder="Select year" />
-              </SelectTrigger>
-              <SelectContent>
-                {AVAILABLE_YEARS.map((availableYear) => (
-                  <SelectItem key={availableYear} value={String(availableYear)}>
-                    {availableYear}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
+          <YearTabs value={year} onChange={handleYearChange} />
 
           <div className="flex flex-col items-start gap-2 sm:items-end">
             {snapshot?.updatedAt ? (

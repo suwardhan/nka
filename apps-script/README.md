@@ -8,7 +8,7 @@ The admin UI normally reads that static JSON (fast). **Refresh data** rebuilds f
 
 ## Deploy / update
 
-1. Open the 2025 spreadsheet → Extensions → Apps Script.
+1. Open any year spreadsheet (e.g. 2025) → Extensions → Apps Script.
 2. Replace `AdminProxy.gs` (or equivalent) with [`Code.gs`](Code.gs).
 3. Project Settings → Script properties — add:
 

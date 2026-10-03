@@ -14,6 +14,18 @@ export const YEAR_CONFIG: Record<number, YearConfig> = {
     areaOfficeColumnIndex: 11,
     visitPersonColumnIndex: 17,
   },
+  2024: {
+    spreadsheetId: '1eEv8bD1qRsNrkWWpmaseH1nGsCQQMyDygEGnvNtufdo',
+    sheetName: 'Office-Register',
+    areaOfficeColumnIndex: 11,
+    visitPersonColumnIndex: 17,
+  },
+  2023: {
+    spreadsheetId: '14BJqq9GgMsysoROc8pfBB-8MpGWZXaeNkllTL_SzTQA',
+    sheetName: 'Office-Register',
+    areaOfficeColumnIndex: 10, // column K
+    visitPersonColumnIndex: 13, // column N
+  },
 }
 
 export const AVAILABLE_YEARS = Object.keys(YEAR_CONFIG)

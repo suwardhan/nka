@@ -23,8 +23,23 @@
  * - action=aggregate                     rebuild snapshot only (no GitHub write)
  */
 
-var YEAR_SPREADSHEETS = {
-  '2025': '1lh2IS6CWxDi6f11tnT-1oRu6BL7mcGtBd4BK8H92zN0',
+/** Per-year spreadsheet + 0-based column indexes. */
+var YEAR_CONFIG = {
+  '2025': {
+    spreadsheetId: '1lh2IS6CWxDi6f11tnT-1oRu6BL7mcGtBd4BK8H92zN0',
+    areaOfficeColumn: 11, // L
+    visitPersonColumn: 17, // R
+  },
+  '2024': {
+    spreadsheetId: '1eEv8bD1qRsNrkWWpmaseH1nGsCQQMyDygEGnvNtufdo',
+    areaOfficeColumn: 11, // L
+    visitPersonColumn: 17, // R
+  },
+  '2023': {
+    spreadsheetId: '14BJqq9GgMsysoROc8pfBB-8MpGWZXaeNkllTL_SzTQA',
+    areaOfficeColumn: 10, // K
+    visitPersonColumn: 13, // N
+  },
 }
 
 function doGet(e) {
@@ -69,7 +84,7 @@ function setupDailyTrigger() {
 
 /** Time-driven entry point. */
 function dailyRefresh() {
-  var years = Object.keys(YEAR_SPREADSHEETS)
+  var years = Object.keys(YEAR_CONFIG)
   for (var i = 0; i < years.length; i++) {
     refreshAndCommit_(years[i], {})
   }
@@ -87,11 +102,25 @@ function refreshAndCommit_(year, params) {
 }
 
 function buildSnapshot_(year, params) {
+  var yearCfg = YEAR_CONFIG[String(year)] || {}
   var spreadsheetId =
-    params.spreadsheetId || YEAR_SPREADSHEETS[String(year)] || ''
+    params.spreadsheetId || yearCfg.spreadsheetId || ''
   var sheetName = params.sheetName || 'Office-Register'
-  var areaOfficeColumn = parseInt(params.areaOfficeColumn || '11', 10)
-  var visitPersonColumn = parseInt(params.visitPersonColumn || '17', 10)
+
+  var areaOfficeRaw =
+    params.areaOfficeColumn != null && params.areaOfficeColumn !== ''
+      ? params.areaOfficeColumn
+      : yearCfg.areaOfficeColumn != null
+        ? yearCfg.areaOfficeColumn
+        : 11
+  var visitPersonRaw =
+    params.visitPersonColumn != null && params.visitPersonColumn !== ''
+      ? params.visitPersonColumn
+      : yearCfg.visitPersonColumn != null
+        ? yearCfg.visitPersonColumn
+        : 17
+  var areaOfficeColumn = parseInt(areaOfficeRaw, 10)
+  var visitPersonColumn = parseInt(visitPersonRaw, 10)
 
   if (!spreadsheetId) {
     return { error: 'Missing spreadsheetId for year ' + year }
