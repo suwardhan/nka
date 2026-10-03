@@ -1,0 +1,16 @@
+# dependencies / builds
+node_modules/
+admin/node_modules/
+admin/dist/
+admin-site/
+
+# secrets / local env
+admin/.env
+admin/.env.*
+!admin/.env.example
+
+# OS / editor
+.DS_Store
+**/.DS_Store
+.idea/
+.vscode/
