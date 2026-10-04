@@ -1,0 +1,999 @@
+{
+  "year": 2021,
+  "updatedAt": "2026-10-04T09:04:53.627Z",
+  "timezone": "Asia/Kolkata",
+  "areaOffices": [
+    {
+      "name": "LIC Thane",
+      "count": 1084
+    },
+    {
+      "name": "LIC Ghatkopar",
+      "count": 569
+    },
+    {
+      "name": "LIC Borivali",
+      "count": 468
+    },
+    {
+      "name": "LIC Nariman Point",
+      "count": 372
+    },
+    {
+      "name": "LIC Vashi",
+      "count": 300
+    },
+    {
+      "name": "LIC Kalyan",
+      "count": 290
+    },
+    {
+      "name": "LIC Jogeshwari",
+      "count": 258
+    },
+    {
+      "name": "LIC Dadar",
+      "count": 231
+    },
+    {
+      "name": "LIC Santacruz",
+      "count": 206
+    },
+    {
+      "name": "LIC Badlapur",
+      "count": 185
+    },
+    {
+      "name": "LIC Khaghar",
+      "count": 162
+    },
+    {
+      "name": "LIC Mumbai",
+      "count": 157
+    },
+    {
+      "name": "SBI RACPC Thane",
+      "count": 150
+    },
+    {
+      "name": "SBI Main branch",
+      "count": 80
+    },
+    {
+      "name": "SBI Naupad branch",
+      "count": 71
+    },
+    {
+      "name": "LIC Virar",
+      "count": 23
+    },
+    {
+      "name": "LIC Panvel",
+      "count": 17
+    },
+    {
+      "name": "Income Tax Capital Gains",
+      "count": 13
+    },
+    {
+      "name": "SBI Thane East branch",
+      "count": 6
+    },
+    {
+      "name": "SBI SARB Assets Recovery Branch , Thane",
+      "count": 4
+    },
+    {
+      "name": "NASHIK",
+      "count": 3
+    },
+    {
+      "name": "SBI Wada branch",
+      "count": 3
+    },
+    {
+      "name": "LIC NASHIK",
+      "count": 2
+    },
+    {
+      "name": "SBI HIRANANDANI BRANCH",
+      "count": 2
+    },
+    {
+      "name": "-",
+      "count": 1
+    },
+    {
+      "name": "--",
+      "count": 1
+    },
+    {
+      "name": ".",
+      "count": 1
+    },
+    {
+      "name": "APF",
+      "count": 1
+    },
+    {
+      "name": "Area Office",
+      "count": 1
+    },
+    {
+      "name": "BAD",
+      "count": 1
+    },
+    {
+      "name": "CAPITAL GAIN",
+      "count": 1
+    },
+    {
+      "name": "Income Tax Visa",
+      "count": 1
+    },
+    {
+      "name": "LIC DUBAI",
+      "count": 1
+    },
+    {
+      "name": "LRD",
+      "count": 1
+    },
+    {
+      "name": "NAGPUR",
+      "count": 1
+    },
+    {
+      "name": "NAGPUR BRANCH",
+      "count": 1
+    },
+    {
+      "name": "PERONAL",
+      "count": 1
+    },
+    {
+      "name": "PERSONAL",
+      "count": 1
+    },
+    {
+      "name": "SBI KERALA",
+      "count": 1
+    },
+    {
+      "name": "SBI PARBHANI BRANCH",
+      "count": 1
+    },
+    {
+      "name": "SBI Personal",
+      "count": 1
+    },
+    {
+      "name": "SBI RACPC Kalyan",
+      "count": 1
+    },
+    {
+      "name": "SBI SARB THANE BRANCH",
+      "count": 1
+    },
+    {
+      "name": "SBI TARDEO",
+      "count": 1
+    },
+    {
+      "name": "SBI Tardeo Branch",
+      "count": 1
+    },
+    {
+      "name": "SBI VADODARA",
+      "count": 1
+    },
+    {
+      "name": "THANE",
+      "count": 1
+    },
+    {
+      "name": "vashi",
+      "count": 1
+    },
+    {
+      "name": "VASHI",
+      "count": 1
+    }
+  ],
+  "visitPersons": [
+    {
+      "name": "Prashant",
+      "count": 1249
+    },
+    {
+      "name": "Anil",
+      "count": 1248
+    },
+    {
+      "name": "Sagar",
+      "count": 512
+    },
+    {
+      "name": "NITIN",
+      "count": 377
+    },
+    {
+      "name": "Shinde",
+      "count": 337
+    },
+    {
+      "name": "ANIL",
+      "count": 110
+    },
+    {
+      "name": "Nitin",
+      "count": 93
+    },
+    {
+      "name": "RAJENDRA",
+      "count": 85
+    },
+    {
+      "name": "SURAJ",
+      "count": 73
+    },
+    {
+      "name": "PRASHANT",
+      "count": 59
+    },
+    {
+      "name": "nitin",
+      "count": 55
+    },
+    {
+      "name": "----",
+      "count": 50
+    },
+    {
+      "name": "SAGAR",
+      "count": 43
+    },
+    {
+      "name": "-----",
+      "count": 42
+    },
+    {
+      "name": "Rajendra",
+      "count": 37
+    },
+    {
+      "name": "---",
+      "count": 24
+    },
+    {
+      "name": "rajendra",
+      "count": 19
+    },
+    {
+      "name": "anil",
+      "count": 18
+    },
+    {
+      "name": "--",
+      "count": 15
+    },
+    {
+      "name": "SHINDE",
+      "count": 12
+    },
+    {
+      "name": "------",
+      "count": 9
+    },
+    {
+      "name": "prashant",
+      "count": 8
+    },
+    {
+      "name": "RAJ",
+      "count": 8
+    },
+    {
+      "name": "shinde",
+      "count": 7
+    },
+    {
+      "name": "sagar",
+      "count": 5
+    },
+    {
+      "name": "Suraj",
+      "count": 5
+    },
+    {
+      "name": "--------",
+      "count": 4
+    },
+    {
+      "name": "----------",
+      "count": 4
+    },
+    {
+      "name": "Anil / Prashant",
+      "count": 4
+    },
+    {
+      "name": "VIMAL DEEP",
+      "count": 4
+    },
+    {
+      "name": "-------",
+      "count": 3
+    },
+    {
+      "name": "Prashant\nNITIN",
+      "count": 3
+    },
+    {
+      "name": "---------",
+      "count": 2
+    },
+    {
+      "name": "-----------",
+      "count": 2
+    },
+    {
+      "name": "12.05.2021",
+      "count": 2
+    },
+    {
+      "name": "18.05.2021 -WP",
+      "count": 2
+    },
+    {
+      "name": "20.04.2021",
+      "count": 2
+    },
+    {
+      "name": "Anil+ANIL",
+      "count": 2
+    },
+    {
+      "name": "applicant",
+      "count": 2
+    },
+    {
+      "name": "JAISWAL",
+      "count": 2
+    },
+    {
+      "name": "MAIL",
+      "count": 2
+    },
+    {
+      "name": "MAIL - 25.05.2021",
+      "count": 2
+    },
+    {
+      "name": "Nitin + Anil",
+      "count": 2
+    },
+    {
+      "name": "PHOTOS SEND",
+      "count": 2
+    },
+    {
+      "name": "Raj",
+      "count": 2
+    },
+    {
+      "name": "RAJBHAR",
+      "count": 2
+    },
+    {
+      "name": "SUARJ",
+      "count": 2
+    },
+    {
+      "name": "YOGESH SIR",
+      "count": 2
+    },
+    {
+      "name": "02.06.2021",
+      "count": 1
+    },
+    {
+      "name": "07.12.2021+09.12.2021",
+      "count": 1
+    },
+    {
+      "name": "11.05.2021",
+      "count": 1
+    },
+    {
+      "name": "13.05.2021",
+      "count": 1
+    },
+    {
+      "name": "18.05.2021",
+      "count": 1
+    },
+    {
+      "name": "18.12.2021",
+      "count": 1
+    },
+    {
+      "name": "19.05.2021",
+      "count": 1
+    },
+    {
+      "name": "21.05.2021",
+      "count": 1
+    },
+    {
+      "name": "21.05.2021 WP",
+      "count": 1
+    },
+    {
+      "name": "22.04.2021",
+      "count": 1
+    },
+    {
+      "name": "24.05.2021",
+      "count": 1
+    },
+    {
+      "name": "28.04.2021",
+      "count": 1
+    },
+    {
+      "name": "7",
+      "count": 1
+    },
+    {
+      "name": "Anil / prashant",
+      "count": 1
+    },
+    {
+      "name": "Anil /Prashant",
+      "count": 1
+    },
+    {
+      "name": "Anil + Prashant",
+      "count": 1
+    },
+    {
+      "name": "Anil + SAGAR",
+      "count": 1
+    },
+    {
+      "name": "Anil+rajendra",
+      "count": 1
+    },
+    {
+      "name": "ANIL25.03.2021",
+      "count": 1
+    },
+    {
+      "name": "APPLICANT",
+      "count": 1
+    },
+    {
+      "name": "ATUL SIR",
+      "count": 1
+    },
+    {
+      "name": "Field Executive",
+      "count": 1
+    },
+    {
+      "name": "Gopal",
+      "count": 1
+    },
+    {
+      "name": "M JAISWAL",
+      "count": 1
+    },
+    {
+      "name": "MACHAKAR",
+      "count": 1
+    },
+    {
+      "name": "MAYURESH",
+      "count": 1
+    },
+    {
+      "name": "NISHANT",
+      "count": 1
+    },
+    {
+      "name": "nitesh",
+      "count": 1
+    },
+    {
+      "name": "NITIN  + ANIL",
+      "count": 1
+    },
+    {
+      "name": "NITIN - PRASHANT",
+      "count": 1
+    },
+    {
+      "name": "NITIN / Prashant",
+      "count": 1
+    },
+    {
+      "name": "NItin /Shinde",
+      "count": 1
+    },
+    {
+      "name": "NITIN + PRASHANT",
+      "count": 1
+    },
+    {
+      "name": "Nitin/Sagar",
+      "count": 1
+    },
+    {
+      "name": "NITIN+ANIL",
+      "count": 1
+    },
+    {
+      "name": "NITN",
+      "count": 1
+    },
+    {
+      "name": "nittin",
+      "count": 1
+    },
+    {
+      "name": "pappukumar",
+      "count": 1
+    },
+    {
+      "name": "PHOTO SEND",
+      "count": 1
+    },
+    {
+      "name": "photos send",
+      "count": 1
+    },
+    {
+      "name": "Prashant\nAnil",
+      "count": 1
+    },
+    {
+      "name": "Prashant / Anil",
+      "count": 1
+    },
+    {
+      "name": "Prashant / ANIL",
+      "count": 1
+    },
+    {
+      "name": "Prashant + Anil",
+      "count": 1
+    },
+    {
+      "name": "Prashant + ANIL",
+      "count": 1
+    },
+    {
+      "name": "Prashant-Anil",
+      "count": 1
+    },
+    {
+      "name": "Prashant/// ANIL",
+      "count": 1
+    },
+    {
+      "name": "PRASHANT///ANIL",
+      "count": 1
+    },
+    {
+      "name": "RAJNDRA",
+      "count": 1
+    },
+    {
+      "name": "Shinde\nANIL",
+      "count": 1
+    },
+    {
+      "name": "Shinde - Prashant",
+      "count": 1
+    },
+    {
+      "name": "Shinde / Prashant",
+      "count": 1
+    },
+    {
+      "name": "Shinde / SURAJ",
+      "count": 1
+    },
+    {
+      "name": "SONAL",
+      "count": 1
+    },
+    {
+      "name": "suraj",
+      "count": 1
+    },
+    {
+      "name": "suyash sir",
+      "count": 1
+    },
+    {
+      "name": "wp - 17.01.2022",
+      "count": 1
+    },
+    {
+      "name": "WP - 24.05.2021",
+      "count": 1
+    },
+    {
+      "name": "WP - 26.05.2021",
+      "count": 1
+    },
+    {
+      "name": "WP- 24.05.2021",
+      "count": 1
+    },
+    {
+      "name": "YOGESH",
+      "count": 1
+    }
+  ],
+  "reportPreparedBy": [
+    {
+      "name": "Siddhi",
+      "count": 789
+    },
+    {
+      "name": "sakshi",
+      "count": 595
+    },
+    {
+      "name": "POOJA",
+      "count": 343
+    },
+    {
+      "name": "Sonali",
+      "count": 304
+    },
+    {
+      "name": "RAJ",
+      "count": 284
+    },
+    {
+      "name": "Trupti",
+      "count": 284
+    },
+    {
+      "name": "sonali",
+      "count": 243
+    },
+    {
+      "name": "TR",
+      "count": 129
+    },
+    {
+      "name": "SONALI",
+      "count": 123
+    },
+    {
+      "name": "Sakshi",
+      "count": 106
+    },
+    {
+      "name": "TRupti",
+      "count": 60
+    },
+    {
+      "name": "SAKSHI",
+      "count": 51
+    },
+    {
+      "name": "Pooja",
+      "count": 43
+    },
+    {
+      "name": "---",
+      "count": 40
+    },
+    {
+      "name": "SD",
+      "count": 38
+    },
+    {
+      "name": "--",
+      "count": 37
+    },
+    {
+      "name": "trupti",
+      "count": 36
+    },
+    {
+      "name": "pooja",
+      "count": 34
+    },
+    {
+      "name": "siddhi",
+      "count": 31
+    },
+    {
+      "name": "TRUPTI",
+      "count": 26
+    },
+    {
+      "name": "SIDDHI",
+      "count": 23
+    },
+    {
+      "name": "POOJa",
+      "count": 19
+    },
+    {
+      "name": "-----",
+      "count": 16
+    },
+    {
+      "name": "SK",
+      "count": 14
+    },
+    {
+      "name": "----",
+      "count": 12
+    },
+    {
+      "name": "PJ",
+      "count": 12
+    },
+    {
+      "name": "sd",
+      "count": 12
+    },
+    {
+      "name": "-",
+      "count": 11
+    },
+    {
+      "name": "raj",
+      "count": 9
+    },
+    {
+      "name": "Raj",
+      "count": 7
+    },
+    {
+      "name": "---------",
+      "count": 4
+    },
+    {
+      "name": "-----------",
+      "count": 4
+    },
+    {
+      "name": "SN",
+      "count": 4
+    },
+    {
+      "name": "09.07.2021",
+      "count": 3
+    },
+    {
+      "name": "RAJENDRA",
+      "count": 3
+    },
+    {
+      "name": "Sidhi",
+      "count": 3
+    },
+    {
+      "name": "------",
+      "count": 2
+    },
+    {
+      "name": "-------",
+      "count": 2
+    },
+    {
+      "name": "--------",
+      "count": 2
+    },
+    {
+      "name": "30.03.2021",
+      "count": 2
+    },
+    {
+      "name": "Rajendra",
+      "count": 2
+    },
+    {
+      "name": "sIDDHI",
+      "count": 2
+    },
+    {
+      "name": "tr",
+      "count": 2
+    },
+    {
+      "name": "tRUPTI",
+      "count": 2
+    },
+    {
+      "name": "----------",
+      "count": 1
+    },
+    {
+      "name": "04.08.2021",
+      "count": 1
+    },
+    {
+      "name": "09.01.2021",
+      "count": 1
+    },
+    {
+      "name": "15.07.2021",
+      "count": 1
+    },
+    {
+      "name": "16.01.2021",
+      "count": 1
+    },
+    {
+      "name": "20.07.2021",
+      "count": 1
+    },
+    {
+      "name": "22.01.2021",
+      "count": 1
+    },
+    {
+      "name": "22.03.2021",
+      "count": 1
+    },
+    {
+      "name": "22.06.2021",
+      "count": 1
+    },
+    {
+      "name": "23.02.2021",
+      "count": 1
+    },
+    {
+      "name": "26.07.2021",
+      "count": 1
+    },
+    {
+      "name": "27.01.2021",
+      "count": 1
+    },
+    {
+      "name": "27.07.2021",
+      "count": 1
+    },
+    {
+      "name": "PJ2",
+      "count": 1
+    },
+    {
+      "name": "POJA",
+      "count": 1
+    },
+    {
+      "name": "pooja\nSiddhi",
+      "count": 1
+    },
+    {
+      "name": "PPOJA",
+      "count": 1
+    },
+    {
+      "name": "RAJ - RENTAL  + sakshi -REPORT",
+      "count": 1
+    },
+    {
+      "name": "RJ",
+      "count": 1
+    },
+    {
+      "name": "RV - TR",
+      "count": 1
+    },
+    {
+      "name": "SAkshi",
+      "count": 1
+    },
+    {
+      "name": "sakshi - report",
+      "count": 1
+    },
+    {
+      "name": "sakshi / POOJA",
+      "count": 1
+    },
+    {
+      "name": "sakshi/siddhi",
+      "count": 1
+    },
+    {
+      "name": "Sakshi/Siddhi",
+      "count": 1
+    },
+    {
+      "name": "SAKSHI/SIDDHI",
+      "count": 1
+    },
+    {
+      "name": "SD5",
+      "count": 1
+    },
+    {
+      "name": "Sidddhi",
+      "count": 1
+    },
+    {
+      "name": "SIDDDHI",
+      "count": 1
+    },
+    {
+      "name": "SIddhi",
+      "count": 1
+    },
+    {
+      "name": "Siddi",
+      "count": 1
+    },
+    {
+      "name": "SIDDI",
+      "count": 1
+    },
+    {
+      "name": "sidhi",
+      "count": 1
+    },
+    {
+      "name": "sk",
+      "count": 1
+    },
+    {
+      "name": "sN",
+      "count": 1
+    },
+    {
+      "name": "SN3",
+      "count": 1
+    },
+    {
+      "name": "SN5",
+      "count": 1
+    },
+    {
+      "name": "sonALI",
+      "count": 1
+    },
+    {
+      "name": "SOnali",
+      "count": 1
+    },
+    {
+      "name": "Sonali + 1",
+      "count": 1
+    },
+    {
+      "name": "Sonli",
+      "count": 1
+    },
+    {
+      "name": "Trupati",
+      "count": 1
+    },
+    {
+      "name": "TRUpti",
+      "count": 1
+    },
+    {
+      "name": "Trupti (RV)",
+      "count": 1
+    },
+    {
+      "name": "Trupti-",
+      "count": 1
+    }
+  ]
+}
