@@ -20,11 +20,18 @@ type HorizontalCountChartProps = {
   countLabel?: string
 }
 
+function yAxisWidthForLabels(names: string[]): number {
+  const maxLen = names.reduce((max, name) => Math.max(max, name.length), 0)
+  // ~7.5px per character + padding; keep a floor/ceiling for short/long labels
+  return Math.min(160, Math.max(40, Math.ceil(maxLen * 7.5) + 12))
+}
+
 export function HorizontalCountChart({
   data,
   countLabel = 'Cases',
 }: HorizontalCountChartProps) {
   const height = Math.max(280, data.length * 36 + 48)
+  const yAxisWidth = yAxisWidthForLabels(data.map((row) => row.name))
   const config = {
     ...chartConfig,
     count: { ...chartConfig.count, label: countLabel },
@@ -40,7 +47,7 @@ export function HorizontalCountChart({
         accessibilityLayer
         data={data}
         layout="vertical"
-        margin={{ top: 8, right: 24, left: 8, bottom: 8 }}
+        margin={{ top: 8, right: 24, left: 4, bottom: 8 }}
       >
         <CartesianGrid horizontal={false} />
         <XAxis
@@ -54,7 +61,7 @@ export function HorizontalCountChart({
           dataKey="name"
           tickLine={false}
           axisLine={false}
-          width={160}
+          width={yAxisWidth}
           tickMargin={8}
         />
         <ChartTooltip

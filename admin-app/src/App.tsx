@@ -2,8 +2,10 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 
 import { RequireAuth } from '@/components/RequireAuth'
 import { AreaOfficesPage } from '@/pages/AreaOfficesPage'
+import { BanksPage } from '@/pages/BanksPage'
 import { DashboardPage } from '@/pages/DashboardPage'
 import { LoginPage } from '@/pages/LoginPage'
+import { ReportPreparedByPage } from '@/pages/ReportPreparedByPage'
 import { VisitPersonsPage } from '@/pages/VisitPersonsPage'
 
 export default function App() {
@@ -20,6 +22,14 @@ export default function App() {
           }
         />
         <Route
+          path="/dashboard/banks"
+          element={
+            <RequireAuth>
+              <BanksPage />
+            </RequireAuth>
+          }
+        />
+        <Route
           path="/dashboard/area-offices"
           element={
             <RequireAuth>
@@ -32,6 +42,14 @@ export default function App() {
           element={
             <RequireAuth>
               <VisitPersonsPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/dashboard/report-prepared-by"
+          element={
+            <RequireAuth>
+              <ReportPreparedByPage />
             </RequireAuth>
           }
         />

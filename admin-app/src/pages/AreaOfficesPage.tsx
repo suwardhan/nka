@@ -10,7 +10,12 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { AVAILABLE_YEARS, DEFAULT_YEAR } from '@/config/years'
+import {
+  AVAILABLE_YEARS,
+  DEFAULT_YEAR,
+  YEAR_CONFIG,
+  columnIndexToLetter,
+} from '@/config/years'
 import {
   loadDashboardSnapshot,
   type NamedCount,
@@ -21,6 +26,10 @@ export function AreaOfficesPage() {
   const [searchParams] = useSearchParams()
   const yearParam = Number(searchParams.get('year'))
   const year = AVAILABLE_YEARS.includes(yearParam) ? yearParam : DEFAULT_YEAR
+  const columnLetter = columnIndexToLetter(
+    YEAR_CONFIG[year].areaOfficeColumnIndex,
+  )
+
 
   const [data, setData] = useState<NamedCount[]>([])
   const [updatedAt, setUpdatedAt] = useState<string | null>(null)
@@ -83,7 +92,7 @@ export function AreaOfficesPage() {
           <CardHeader>
             <CardTitle>Cases by Area office</CardTitle>
             <CardDescription>
-              All offices from Office-Register column L for {year}
+              All offices from Office-Register column {columnLetter} for {year}
               {!loading && !error
                 ? ` · ${data.length} offices · ${totalCases} total cases`
                 : ''}

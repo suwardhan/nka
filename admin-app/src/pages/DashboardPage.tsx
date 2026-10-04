@@ -11,8 +11,14 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { AVAILABLE_YEARS, DEFAULT_YEAR } from '@/config/years'
+import {
+  AVAILABLE_YEARS,
+  DEFAULT_YEAR,
+  YEAR_CONFIG,
+  columnIndexToLetter,
+} from '@/config/years'
 import { logout } from '@/lib/auth'
+import { countCasesByBank } from '@/lib/banks'
 import {
   loadDashboardSnapshot,
   refreshDashboardSnapshot,
@@ -20,7 +26,7 @@ import {
 } from '@/lib/sheets'
 import { formatIstDateTime, formatRelativeTime } from '@/lib/time'
 
-const TOP_N = 10
+const TOP_N = 8
 
 export function DashboardPage() {
   const navigate = useNavigate()
@@ -70,7 +76,11 @@ export function DashboardPage() {
     }
   }, [year])
 
-  const counts = snapshot ?? { areaOffices: [], visitPersons: [] }
+  const counts = snapshot ?? {
+    areaOffices: [],
+    visitPersons: [],
+    reportPreparedBy: [],
+  }
 
   const topOffices = useMemo(
     () => counts.areaOffices.slice(0, TOP_N),
@@ -80,14 +90,40 @@ export function DashboardPage() {
     () => counts.visitPersons.slice(0, TOP_N),
     [counts.visitPersons],
   )
+  const topReportPreparedBy = useMemo(
+    () => counts.reportPreparedBy.slice(0, TOP_N),
+    [counts.reportPreparedBy],
+  )
+  const bankCounts = useMemo(
+    () => countCasesByBank(counts.areaOffices),
+    [counts.areaOffices],
+  )
+  const topBanks = useMemo(
+    () => bankCounts.slice(0, TOP_N),
+    [bankCounts],
+  )
 
   const totalOfficeCases = counts.areaOffices.reduce(
     (sum, row) => sum + row.count,
     0,
   )
+  const totalBankCases = bankCounts.reduce((sum, row) => sum + row.count, 0)
   const totalVisitCases = counts.visitPersons.reduce(
     (sum, row) => sum + row.count,
     0,
+  )
+  const totalReportCases = counts.reportPreparedBy.reduce(
+    (sum, row) => sum + row.count,
+    0,
+  )
+  const officeColumnLetter = columnIndexToLetter(
+    YEAR_CONFIG[year].areaOfficeColumnIndex,
+  )
+  const visitColumnLetter = columnIndexToLetter(
+    YEAR_CONFIG[year].visitPersonColumnIndex,
+  )
+  const reportColumnLetter = columnIndexToLetter(
+    YEAR_CONFIG[year].reportPreparedByColumnIndex,
   )
 
   async function handleRefresh() {
@@ -179,65 +215,126 @@ export function DashboardPage() {
         ) : null}
 
         {!loading && !error && snapshot ? (
-          <div className="grid gap-6 lg:grid-cols-2">
-            <Card>
-              <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0">
-                <div className="space-y-1.5">
-                  <CardTitle>Cases by Area office</CardTitle>
-                  <CardDescription>
-                    Top {TOP_N} from column L for {year}
-                    {` · ${totalOfficeCases} total cases`}
-                  </CardDescription>
-                </div>
-                {counts.areaOffices.length > TOP_N ? (
-                  <Button asChild variant="outline" size="sm">
-                    <Link to={`/dashboard/area-offices?year=${year}`}>
-                      View all
-                    </Link>
-                  </Button>
-                ) : null}
-              </CardHeader>
-              <CardContent>
-                {topOffices.length === 0 ? (
-                  <p className="py-16 text-center text-sm text-muted-foreground">
-                    No Area office values found for {year}.
-                  </p>
-                ) : (
-                  <HorizontalCountChart data={topOffices} />
-                )}
-              </CardContent>
-            </Card>
+          <div className="space-y-6">
+            <div className="grid gap-6 lg:grid-cols-2">
+              <Card>
+                <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0">
+                  <div className="space-y-1.5">
+                    <CardTitle>Cases by Bank</CardTitle>
+                    <CardDescription>
+                      Top {TOP_N} from Area office names for {year}
+                      {` · ${totalBankCases} total cases`}
+                    </CardDescription>
+                  </div>
+                  {bankCounts.length > 0 ? (
+                    <Button asChild variant="outline" size="sm">
+                      <Link to={`/dashboard/banks?year=${year}`}>View all</Link>
+                    </Button>
+                  ) : null}
+                </CardHeader>
+                <CardContent>
+                  {topBanks.length === 0 ? (
+                    <p className="py-16 text-center text-sm text-muted-foreground">
+                      No bank values found for {year}.
+                    </p>
+                  ) : (
+                    <HorizontalCountChart data={topBanks} />
+                  )}
+                </CardContent>
+              </Card>
 
-            <Card>
-              <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0">
-                <div className="space-y-1.5">
-                  <CardTitle>Visits by person</CardTitle>
-                  <CardDescription>
-                    Top {TOP_N} from column R for {year}
-                    {` · ${totalVisitCases} total visits`}
-                  </CardDescription>
-                </div>
-                {counts.visitPersons.length > TOP_N ? (
-                  <Button asChild variant="outline" size="sm">
-                    <Link to={`/dashboard/visit-persons?year=${year}`}>
-                      View all
-                    </Link>
-                  </Button>
-                ) : null}
-              </CardHeader>
-              <CardContent>
-                {topVisitPersons.length === 0 ? (
-                  <p className="py-16 text-center text-sm text-muted-foreground">
-                    No Visit person values found for {year}.
-                  </p>
-                ) : (
-                  <HorizontalCountChart
-                    data={topVisitPersons}
-                    countLabel="Visits"
-                  />
-                )}
-              </CardContent>
-            </Card>
+              <Card>
+                <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0">
+                  <div className="space-y-1.5">
+                    <CardTitle>Cases by Area office</CardTitle>
+                    <CardDescription>
+                      Top {TOP_N} from column {officeColumnLetter} for {year}
+                      {` · ${totalOfficeCases} total cases`}
+                    </CardDescription>
+                  </div>
+                  {counts.areaOffices.length > 0 ? (
+                    <Button asChild variant="outline" size="sm">
+                      <Link to={`/dashboard/area-offices?year=${year}`}>
+                        View all
+                      </Link>
+                    </Button>
+                  ) : null}
+                </CardHeader>
+                <CardContent>
+                  {topOffices.length === 0 ? (
+                    <p className="py-16 text-center text-sm text-muted-foreground">
+                      No Area office values found for {year}.
+                    </p>
+                  ) : (
+                    <HorizontalCountChart data={topOffices} />
+                  )}
+                </CardContent>
+              </Card>
+            </div>
+
+            <div className="grid gap-6 lg:grid-cols-2">
+              <Card>
+                <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0">
+                  <div className="space-y-1.5">
+                    <CardTitle>Visits by person</CardTitle>
+                    <CardDescription>
+                      Top {TOP_N} from column {visitColumnLetter} for {year}
+                      {` · ${totalVisitCases} total visits`}
+                    </CardDescription>
+                  </div>
+                  {counts.visitPersons.length > 0 ? (
+                    <Button asChild variant="outline" size="sm">
+                      <Link to={`/dashboard/visit-persons?year=${year}`}>
+                        View all
+                      </Link>
+                    </Button>
+                  ) : null}
+                </CardHeader>
+                <CardContent>
+                  {topVisitPersons.length === 0 ? (
+                    <p className="py-16 text-center text-sm text-muted-foreground">
+                      No Visit person values found for {year}.
+                    </p>
+                  ) : (
+                    <HorizontalCountChart
+                      data={topVisitPersons}
+                      countLabel="Visits"
+                    />
+                  )}
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardHeader className="flex flex-row items-start justify-between gap-4 space-y-0">
+                  <div className="space-y-1.5">
+                    <CardTitle>Report prepared by</CardTitle>
+                    <CardDescription>
+                      Top {TOP_N} from column {reportColumnLetter} for {year}
+                      {` · ${totalReportCases} total reports`}
+                    </CardDescription>
+                  </div>
+                  {counts.reportPreparedBy.length > 0 ? (
+                    <Button asChild variant="outline" size="sm">
+                      <Link to={`/dashboard/report-prepared-by?year=${year}`}>
+                        View all
+                      </Link>
+                    </Button>
+                  ) : null}
+                </CardHeader>
+                <CardContent>
+                  {topReportPreparedBy.length === 0 ? (
+                    <p className="py-16 text-center text-sm text-muted-foreground">
+                      No Report prepared by values found for {year}.
+                    </p>
+                  ) : (
+                    <HorizontalCountChart
+                      data={topReportPreparedBy}
+                      countLabel="Reports"
+                    />
+                  )}
+                </CardContent>
+              </Card>
+            </div>
           </div>
         ) : null}
       </main>
