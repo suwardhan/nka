@@ -25,20 +25,41 @@
 
 /** Per-year spreadsheet + 0-based column indexes. */
 var YEAR_CONFIG = {
+  '2026': {
+    spreadsheetId: '1QPntYKdKXIZM2UcTn_KrBOnsJ_vEEia-BSGs6DMMQr0',
+    areaOfficeColumn: 11, // L
+    visitPersonColumn: 17, // R
+    reportPreparedByColumn: 32, // AG
+  },
   '2025': {
     spreadsheetId: '1lh2IS6CWxDi6f11tnT-1oRu6BL7mcGtBd4BK8H92zN0',
     areaOfficeColumn: 11, // L
     visitPersonColumn: 17, // R
+    reportPreparedByColumn: 32, // AG
   },
   '2024': {
     spreadsheetId: '1eEv8bD1qRsNrkWWpmaseH1nGsCQQMyDygEGnvNtufdo',
     areaOfficeColumn: 11, // L
     visitPersonColumn: 17, // R
+    reportPreparedByColumn: 32, // AG
   },
   '2023': {
     spreadsheetId: '14BJqq9GgMsysoROc8pfBB-8MpGWZXaeNkllTL_SzTQA',
     areaOfficeColumn: 10, // K
     visitPersonColumn: 13, // N
+    reportPreparedByColumn: 28, // AC
+  },
+  '2022': {
+    spreadsheetId: '16qZ3zcG2pvmesNqGuHn3xs4qK8gT_uamqdzvnkOYWNw',
+    areaOfficeColumn: 10, // K
+    visitPersonColumn: 13, // N
+    reportPreparedByColumn: 28, // AC
+  },
+  '2021': {
+    spreadsheetId: '1GD4z3kUB7_c-QsCj3Vzlm-74f9zgjhWeqKNyAtSCXdo',
+    areaOfficeColumn: 10, // K
+    visitPersonColumn: 13, // N
+    reportPreparedByColumn: 28, // AC
   },
 }
 
@@ -53,7 +74,7 @@ function doGet(e) {
     }
 
     var action = String(params.action || 'aggregate')
-    var year = String(params.year || '2025')
+    var year = String(params.year || '2026')
 
     if (action === 'refresh') {
       return json_(refreshAndCommit_(year, params))
@@ -119,8 +140,15 @@ function buildSnapshot_(year, params) {
       : yearCfg.visitPersonColumn != null
         ? yearCfg.visitPersonColumn
         : 17
+  var reportPreparedByRaw =
+    params.reportPreparedByColumn != null && params.reportPreparedByColumn !== ''
+      ? params.reportPreparedByColumn
+      : yearCfg.reportPreparedByColumn != null
+        ? yearCfg.reportPreparedByColumn
+        : 32
   var areaOfficeColumn = parseInt(areaOfficeRaw, 10)
   var visitPersonColumn = parseInt(visitPersonRaw, 10)
+  var reportPreparedByColumn = parseInt(reportPreparedByRaw, 10)
 
   if (!spreadsheetId) {
     return { error: 'Missing spreadsheetId for year ' + year }
@@ -130,6 +158,9 @@ function buildSnapshot_(year, params) {
   }
   if (isNaN(visitPersonColumn) || visitPersonColumn < 0) {
     return { error: 'Invalid visitPersonColumn' }
+  }
+  if (isNaN(reportPreparedByColumn) || reportPreparedByColumn < 0) {
+    return { error: 'Invalid reportPreparedByColumn' }
   }
 
   var spreadsheet = SpreadsheetApp.openById(spreadsheetId)
@@ -141,9 +172,11 @@ function buildSnapshot_(year, params) {
   var values = sheet.getDataRange().getValues()
   var areaOffices = []
   var visitPersons = []
+  var reportPreparedBy = []
   if (values && values.length >= 2) {
     areaOffices = aggregateColumn_(values, areaOfficeColumn)
     visitPersons = aggregateColumn_(values, visitPersonColumn)
+    reportPreparedBy = aggregateColumn_(values, reportPreparedByColumn)
   }
 
   return {
@@ -152,6 +185,7 @@ function buildSnapshot_(year, params) {
     timezone: 'Asia/Kolkata',
     areaOffices: areaOffices,
     visitPersons: visitPersons,
+    reportPreparedBy: reportPreparedBy,
   }
 }
 

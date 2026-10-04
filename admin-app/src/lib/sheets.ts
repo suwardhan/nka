@@ -11,6 +11,7 @@ export type DashboardSnapshot = {
   timezone?: string
   areaOffices: NamedCount[]
   visitPersons: NamedCount[]
+  reportPreparedBy: NamedCount[]
   github?: {
     ok: boolean
     path?: string
@@ -36,6 +37,7 @@ function normalizeSnapshot(
     timezone: json.timezone || 'Asia/Kolkata',
     areaOffices: json.areaOffices ?? [],
     visitPersons: json.visitPersons ?? [],
+    reportPreparedBy: json.reportPreparedBy ?? [],
     github: json.github,
   }
 }
@@ -151,6 +153,10 @@ export async function refreshDashboardSnapshot(
   url.searchParams.set(
     'visitPersonColumn',
     String(yearConfig.visitPersonColumnIndex),
+  )
+  url.searchParams.set(
+    'reportPreparedByColumn',
+    String(yearConfig.reportPreparedByColumnIndex),
   )
 
   const response = await fetch(url.toString())

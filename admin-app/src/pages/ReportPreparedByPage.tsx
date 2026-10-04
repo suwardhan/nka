@@ -22,14 +22,13 @@ import {
 } from '@/lib/sheets'
 import { formatRelativeTime } from '@/lib/time'
 
-export function VisitPersonsPage() {
+export function ReportPreparedByPage() {
   const [searchParams] = useSearchParams()
   const yearParam = Number(searchParams.get('year'))
   const year = AVAILABLE_YEARS.includes(yearParam) ? yearParam : DEFAULT_YEAR
   const columnLetter = columnIndexToLetter(
-    YEAR_CONFIG[year].visitPersonColumnIndex,
+    YEAR_CONFIG[year].reportPreparedByColumnIndex,
   )
-
 
   const [data, setData] = useState<NamedCount[]>([])
   const [updatedAt, setUpdatedAt] = useState<string | null>(null)
@@ -45,7 +44,7 @@ export function VisitPersonsPage() {
       try {
         const result = await loadDashboardSnapshot(year)
         if (!cancelled) {
-          setData(result.visitPersons)
+          setData(result.reportPreparedBy)
           setUpdatedAt(result.updatedAt)
         }
       } catch (err) {
@@ -67,7 +66,7 @@ export function VisitPersonsPage() {
     }
   }, [year])
 
-  const totalVisits = data.reduce((sum, row) => sum + row.count, 0)
+  const totalReports = data.reduce((sum, row) => sum + row.count, 0)
 
   return (
     <div className="min-h-screen bg-muted/30">
@@ -78,7 +77,7 @@ export function VisitPersonsPage() {
               Narendra Ahirrao and Associates
             </p>
             <h1 className="text-xl font-semibold tracking-tight">
-              All Visit persons
+              All Report prepared by
             </h1>
           </div>
           <Button asChild variant="outline">
@@ -90,11 +89,11 @@ export function VisitPersonsPage() {
       <main className="mx-auto max-w-6xl space-y-6 px-4 py-6">
         <Card>
           <CardHeader>
-            <CardTitle>Visits by person</CardTitle>
+            <CardTitle>Report prepared by</CardTitle>
             <CardDescription>
-              All visit persons from Office-Register column {columnLetter} for {year}
+              All values from Office-Register column {columnLetter} for {year}
               {!loading && !error
-                ? ` · ${data.length} people · ${totalVisits} total visits`
+                ? ` · ${data.length} people · ${totalReports} total reports`
                 : ''}
               {updatedAt ? ` · snapshot ${formatRelativeTime(updatedAt)}` : ''}
             </CardDescription>
@@ -114,13 +113,13 @@ export function VisitPersonsPage() {
 
             {!loading && !error && data.length === 0 ? (
               <p className="py-16 text-center text-sm text-muted-foreground">
-                No Visit person values found for {year}.
+                No Report prepared by values found for {year}.
               </p>
             ) : null}
 
             {!loading && !error && data.length > 0 ? (
               <div className="max-h-[70vh] overflow-y-auto pr-2">
-                <HorizontalCountChart data={data} countLabel="Visits" />
+                <HorizontalCountChart data={data} countLabel="Reports" />
               </div>
             ) : null}
           </CardContent>

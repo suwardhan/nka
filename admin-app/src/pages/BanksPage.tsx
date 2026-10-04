@@ -10,26 +10,18 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import {
-  AVAILABLE_YEARS,
-  DEFAULT_YEAR,
-  YEAR_CONFIG,
-  columnIndexToLetter,
-} from '@/config/years'
+import { AVAILABLE_YEARS, DEFAULT_YEAR } from '@/config/years'
+import { countCasesByBank } from '@/lib/banks'
 import {
   loadDashboardSnapshot,
   type NamedCount,
 } from '@/lib/sheets'
 import { formatRelativeTime } from '@/lib/time'
 
-export function VisitPersonsPage() {
+export function BanksPage() {
   const [searchParams] = useSearchParams()
   const yearParam = Number(searchParams.get('year'))
   const year = AVAILABLE_YEARS.includes(yearParam) ? yearParam : DEFAULT_YEAR
-  const columnLetter = columnIndexToLetter(
-    YEAR_CONFIG[year].visitPersonColumnIndex,
-  )
-
 
   const [data, setData] = useState<NamedCount[]>([])
   const [updatedAt, setUpdatedAt] = useState<string | null>(null)
@@ -45,7 +37,7 @@ export function VisitPersonsPage() {
       try {
         const result = await loadDashboardSnapshot(year)
         if (!cancelled) {
-          setData(result.visitPersons)
+          setData(countCasesByBank(result.areaOffices))
           setUpdatedAt(result.updatedAt)
         }
       } catch (err) {
@@ -67,7 +59,7 @@ export function VisitPersonsPage() {
     }
   }, [year])
 
-  const totalVisits = data.reduce((sum, row) => sum + row.count, 0)
+  const totalCases = data.reduce((sum, row) => sum + row.count, 0)
 
   return (
     <div className="min-h-screen bg-muted/30">
@@ -77,9 +69,7 @@ export function VisitPersonsPage() {
             <p className="text-sm text-muted-foreground">
               Narendra Ahirrao and Associates
             </p>
-            <h1 className="text-xl font-semibold tracking-tight">
-              All Visit persons
-            </h1>
+            <h1 className="text-xl font-semibold tracking-tight">All Banks</h1>
           </div>
           <Button asChild variant="outline">
             <Link to={`/dashboard?year=${year}`}>Back to dashboard</Link>
@@ -90,11 +80,11 @@ export function VisitPersonsPage() {
       <main className="mx-auto max-w-6xl space-y-6 px-4 py-6">
         <Card>
           <CardHeader>
-            <CardTitle>Visits by person</CardTitle>
+            <CardTitle>Cases by Bank</CardTitle>
             <CardDescription>
-              All visit persons from Office-Register column {columnLetter} for {year}
+              Parsed from Area office names for {year}
               {!loading && !error
-                ? ` · ${data.length} people · ${totalVisits} total visits`
+                ? ` · ${data.length} banks · ${totalCases} total cases`
                 : ''}
               {updatedAt ? ` · snapshot ${formatRelativeTime(updatedAt)}` : ''}
             </CardDescription>
@@ -114,13 +104,13 @@ export function VisitPersonsPage() {
 
             {!loading && !error && data.length === 0 ? (
               <p className="py-16 text-center text-sm text-muted-foreground">
-                No Visit person values found for {year}.
+                No bank values found for {year}.
               </p>
             ) : null}
 
             {!loading && !error && data.length > 0 ? (
               <div className="max-h-[70vh] overflow-y-auto pr-2">
-                <HorizontalCountChart data={data} countLabel="Visits" />
+                <HorizontalCountChart data={data} />
               </div>
             ) : null}
           </CardContent>

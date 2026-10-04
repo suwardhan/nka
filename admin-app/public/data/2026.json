@@ -1,6 +1,6 @@
 {
   "year": 2026,
-  "updatedAt": "2026-10-04T08:59:00.553Z",
+  "updatedAt": "2026-10-04T09:06:08.389Z",
   "timezone": "Asia/Kolkata",
   "areaOffices": [
     {
@@ -343,6 +343,248 @@
     },
     {
       "name": "Sonali",
+      "count": 1
+    }
+  ],
+  "reportPreparedBy": [
+    {
+      "name": "Siddhi",
+      "count": 548
+    },
+    {
+      "name": "Anushka",
+      "count": 506
+    },
+    {
+      "name": "RAJ",
+      "count": 404
+    },
+    {
+      "name": "Sonali",
+      "count": 324
+    },
+    {
+      "name": "SONALI",
+      "count": 108
+    },
+    {
+      "name": "Sanket",
+      "count": 100
+    },
+    {
+      "name": "sonali",
+      "count": 10
+    },
+    {
+      "name": "ANUSHKA",
+      "count": 8
+    },
+    {
+      "name": "Siddhi \nSiddhi",
+      "count": 8
+    },
+    {
+      "name": "Anushka/siddhi",
+      "count": 6
+    },
+    {
+      "name": "SANKET",
+      "count": 6
+    },
+    {
+      "name": "SOnali",
+      "count": 6
+    },
+    {
+      "name": "Anushka/SD",
+      "count": 5
+    },
+    {
+      "name": "Anushka/Raj",
+      "count": 4
+    },
+    {
+      "name": "siddhi",
+      "count": 4
+    },
+    {
+      "name": "Anushak",
+      "count": 3
+    },
+    {
+      "name": "anushka",
+      "count": 3
+    },
+    {
+      "name": "Anushka /sn",
+      "count": 3
+    },
+    {
+      "name": "Anushka/RAJ",
+      "count": 3
+    },
+    {
+      "name": "Anushka/SN",
+      "count": 3
+    },
+    {
+      "name": "SIDDHI",
+      "count": 3
+    },
+    {
+      "name": "AM/SD",
+      "count": 2
+    },
+    {
+      "name": "Anushka\nSiddhi",
+      "count": 2
+    },
+    {
+      "name": "Anushka \nSiddhi",
+      "count": 2
+    },
+    {
+      "name": "Anushka/ Sonali",
+      "count": 2
+    },
+    {
+      "name": "Anushka/raj",
+      "count": 2
+    },
+    {
+      "name": "Anushka/sonali",
+      "count": 2
+    },
+    {
+      "name": "RAJ \nAnushka",
+      "count": 2
+    },
+    {
+      "name": "Saket",
+      "count": 2
+    },
+    {
+      "name": "Siddhi\nSiddhi",
+      "count": 2
+    },
+    {
+      "name": "Siddhi / Sonali",
+      "count": 2
+    },
+    {
+      "name": "SoNALI",
+      "count": 2
+    },
+    {
+      "name": "--",
+      "count": 1
+    },
+    {
+      "name": "Anuahka",
+      "count": 1
+    },
+    {
+      "name": "Anushak/SD",
+      "count": 1
+    },
+    {
+      "name": "Anushaka",
+      "count": 1
+    },
+    {
+      "name": "Anushka \nSanket",
+      "count": 1
+    },
+    {
+      "name": "Anushka \nSonali",
+      "count": 1
+    },
+    {
+      "name": "ANUSHKA /raj",
+      "count": 1
+    },
+    {
+      "name": "Anushka /SD",
+      "count": 1
+    },
+    {
+      "name": "Anushka/ Siddhi",
+      "count": 1
+    },
+    {
+      "name": "Anushka/ sn",
+      "count": 1
+    },
+    {
+      "name": "RAJ \nSiddhi",
+      "count": 1
+    },
+    {
+      "name": "Raj / Siddhi",
+      "count": 1
+    },
+    {
+      "name": "Report Prepared by",
+      "count": 1
+    },
+    {
+      "name": "RJ/SD",
+      "count": 1
+    },
+    {
+      "name": "sanket",
+      "count": 1
+    },
+    {
+      "name": "Sanket\nSiddhi",
+      "count": 1
+    },
+    {
+      "name": "SANKET \nAnushka",
+      "count": 1
+    },
+    {
+      "name": "SD/RJ",
+      "count": 1
+    },
+    {
+      "name": "SIddhi",
+      "count": 1
+    },
+    {
+      "name": "Siddhi\nSonali",
+      "count": 1
+    },
+    {
+      "name": "SKT/SD",
+      "count": 1
+    },
+    {
+      "name": "SN/SD",
+      "count": 1
+    },
+    {
+      "name": "soNALI",
+      "count": 1
+    },
+    {
+      "name": "sONALI",
+      "count": 1
+    },
+    {
+      "name": "Sonali\nSiddhi",
+      "count": 1
+    },
+    {
+      "name": "Sonali / Anushka",
+      "count": 1
+    },
+    {
+      "name": "SONALI/ Siddhi",
+      "count": 1
+    },
+    {
+      "name": "Sonali/SD",
       "count": 1
     }
   ]
