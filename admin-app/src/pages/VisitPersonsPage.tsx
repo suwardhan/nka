@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 
+import { AdminHeader } from '@/components/AdminHeader'
 import { HorizontalCountChart } from '@/components/HorizontalCountChart'
 import { Button } from '@/components/ui/button'
 import {
@@ -71,21 +72,14 @@ export function VisitPersonsPage() {
 
   return (
     <div className="min-h-screen bg-muted/30">
-      <header className="border-b bg-background">
-        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-4">
-          <div>
-            <p className="text-sm text-muted-foreground">
-              Narendra Ahirrao and Associates
-            </p>
-            <h1 className="text-xl font-semibold tracking-tight">
-              All Visit persons
-            </h1>
-          </div>
+      <AdminHeader
+        title="All Visit persons"
+        actions={
           <Button asChild variant="outline">
             <Link to={`/dashboard?year=${year}`}>Back to dashboard</Link>
           </Button>
-        </div>
-      </header>
+        }
+      />
 
       <main className="mx-auto max-w-6xl space-y-6 px-4 py-6">
         <Card>
