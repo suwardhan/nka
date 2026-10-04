@@ -1,0 +1,349 @@
+{
+  "year": 2026,
+  "updatedAt": "2026-10-04T08:48:32.690Z",
+  "timezone": "Asia/Kolkata",
+  "areaOffices": [
+    {
+      "name": "SBI HLC Kalyan",
+      "count": 365
+    },
+    {
+      "name": "SBI HLC Thane",
+      "count": 289
+    },
+    {
+      "name": "LIC Thane",
+      "count": 262
+    },
+    {
+      "name": "LIC Nariman Point",
+      "count": 207
+    },
+    {
+      "name": "LIC Ghatkopar",
+      "count": 160
+    },
+    {
+      "name": "LIC Borivali",
+      "count": 153
+    },
+    {
+      "name": "LIC Kalyan",
+      "count": 142
+    },
+    {
+      "name": "LIC Khaghar",
+      "count": 95
+    },
+    {
+      "name": "LIC Vashi",
+      "count": 73
+    },
+    {
+      "name": "LIC Santacruz",
+      "count": 62
+    },
+    {
+      "name": "LIC Andheri",
+      "count": 59
+    },
+    {
+      "name": "SBI Main branch",
+      "count": 54
+    },
+    {
+      "name": "LIC Virar",
+      "count": 52
+    },
+    {
+      "name": "LIC Ghodbunder",
+      "count": 44
+    },
+    {
+      "name": "LIC Mumbai",
+      "count": 42
+    },
+    {
+      "name": "LIC Panvel",
+      "count": 41
+    },
+    {
+      "name": "SBI Naupada Branch",
+      "count": 27
+    },
+    {
+      "name": "Can-Fin Borivali",
+      "count": 26
+    },
+    {
+      "name": "LIC Jogeshwari",
+      "count": 22
+    },
+    {
+      "name": "Can-Fin Kalyan",
+      "count": 20
+    },
+    {
+      "name": "SBI GHATKOPAR",
+      "count": 5
+    },
+    {
+      "name": "Income Tax Capital Gains",
+      "count": 4
+    },
+    {
+      "name": "TJSB KALWA",
+      "count": 4
+    },
+    {
+      "name": "LIC Badlapur",
+      "count": 3
+    },
+    {
+      "name": "LIC PUNE",
+      "count": 3
+    },
+    {
+      "name": "TJSB RAM \nMARUTI ROAD",
+      "count": 3
+    },
+    {
+      "name": "Area Office",
+      "count": 2
+    },
+    {
+      "name": "Bank of Maharashtra, Naupada, Thane",
+      "count": 2
+    },
+    {
+      "name": "Canfin Homes",
+      "count": 2
+    },
+    {
+      "name": "LIC KHARGHAR",
+      "count": 2
+    },
+    {
+      "name": "SBI DELHI BRNACH",
+      "count": 2
+    },
+    {
+      "name": "SBI HLC Ghatkopar",
+      "count": 2
+    },
+    {
+      "name": "SBI HLC SION",
+      "count": 2
+    },
+    {
+      "name": "STJSB",
+      "count": 2
+    },
+    {
+      "name": "TJSB",
+      "count": 2
+    },
+    {
+      "name": "TJSB BANK",
+      "count": 2
+    },
+    {
+      "name": "APF PANVEL",
+      "count": 1
+    },
+    {
+      "name": "Bank of Maharashtra, \nNaupada Branch",
+      "count": 1
+    },
+    {
+      "name": "Can - Fin",
+      "count": 1
+    },
+    {
+      "name": "can - Fin Borivali",
+      "count": 1
+    },
+    {
+      "name": "can fin Borivali",
+      "count": 1
+    },
+    {
+      "name": "Can-Fin BORIVALI",
+      "count": 1
+    },
+    {
+      "name": "Can-Fin Vashi",
+      "count": 1
+    },
+    {
+      "name": "Capital Gains",
+      "count": 1
+    },
+    {
+      "name": "LIC Dadar",
+      "count": 1
+    },
+    {
+      "name": "LIC THANE",
+      "count": 1
+    },
+    {
+      "name": "PERSONAL",
+      "count": 1
+    },
+    {
+      "name": "SBI Akola",
+      "count": 1
+    },
+    {
+      "name": "SBI CHATRAPATI \nSAMBHAJI NAGAR",
+      "count": 1
+    },
+    {
+      "name": "SBI DELHI",
+      "count": 1
+    },
+    {
+      "name": "sbi Ghatkopar",
+      "count": 1
+    },
+    {
+      "name": "SBI Gwalior ( M.P.)",
+      "count": 1
+    },
+    {
+      "name": "SBI HLC SAMBHAJI NAGAR",
+      "count": 1
+    },
+    {
+      "name": "SBI HOME LOAN CENTER is cpc",
+      "count": 1
+    },
+    {
+      "name": "SBI JEKE Gram \nBranch",
+      "count": 1
+    },
+    {
+      "name": "SBI Khopat Branch",
+      "count": 1
+    },
+    {
+      "name": "SBI MAJIWADE BRANCH",
+      "count": 1
+    },
+    {
+      "name": "SBI NASHIK",
+      "count": 1
+    },
+    {
+      "name": "SBI SANGAMNAR BRANCH",
+      "count": 1
+    },
+    {
+      "name": "SBI SANGAMNER GUJAR",
+      "count": 1
+    },
+    {
+      "name": "TJSB Khopat",
+      "count": 1
+    },
+    {
+      "name": "TJSB RAM MARUTI",
+      "count": 1
+    },
+    {
+      "name": "TJSB RAM MARUTI \nRAOD",
+      "count": 1
+    },
+    {
+      "name": "TJSB RAM MARUTI BRANCH",
+      "count": 1
+    }
+  ],
+  "visitPersons": [
+    {
+      "name": "Akshay",
+      "count": 645
+    },
+    {
+      "name": "Amit",
+      "count": 596
+    },
+    {
+      "name": "Ajit",
+      "count": 531
+    },
+    {
+      "name": "Sanket",
+      "count": 359
+    },
+    {
+      "name": "Rajendra",
+      "count": 37
+    },
+    {
+      "name": "---",
+      "count": 8
+    },
+    {
+      "name": "--",
+      "count": 5
+    },
+    {
+      "name": "Santosh",
+      "count": 3
+    },
+    {
+      "name": "SANTOSH",
+      "count": 3
+    },
+    {
+      "name": "santosh",
+      "count": 2
+    },
+    {
+      "name": "SANTOSH \nKHUTE",
+      "count": 2
+    },
+    {
+      "name": "santosh khute",
+      "count": 2
+    },
+    {
+      "name": "Santosh khute",
+      "count": 2
+    },
+    {
+      "name": "SANTOSH KHUTE",
+      "count": 2
+    },
+    {
+      "name": "----",
+      "count": 1
+    },
+    {
+      "name": "AJIT",
+      "count": 1
+    },
+    {
+      "name": "Ajit\nakshay",
+      "count": 1
+    },
+    {
+      "name": "Akshay/sanket",
+      "count": 1
+    },
+    {
+      "name": "Field Executive",
+      "count": 1
+    },
+    {
+      "name": "Sagar",
+      "count": 1
+    },
+    {
+      "name": "Sonali",
+      "count": 1
+    }
+  ]
+}
