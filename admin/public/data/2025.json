@@ -1,0 +1,453 @@
+{
+  "year": 2025,
+  "updatedAt": "2026-10-04T08:59:36.780Z",
+  "timezone": "Asia/Kolkata",
+  "areaOffices": [
+    {
+      "name": "SBI HLC Thane",
+      "count": 495
+    },
+    {
+      "name": "LIC Ghatkopar",
+      "count": 449
+    },
+    {
+      "name": "LIC Thane",
+      "count": 425
+    },
+    {
+      "name": "LIC Nariman Point",
+      "count": 404
+    },
+    {
+      "name": "LIC Borivali",
+      "count": 310
+    },
+    {
+      "name": "SBI RACPC Thane",
+      "count": 260
+    },
+    {
+      "name": "SBI HLC Kalyan",
+      "count": 248
+    },
+    {
+      "name": "SBI RACPC Kalyan",
+      "count": 154
+    },
+    {
+      "name": "LIC Santacruz",
+      "count": 149
+    },
+    {
+      "name": "LIC Khaghar",
+      "count": 134
+    },
+    {
+      "name": "SBI Main branch",
+      "count": 90
+    },
+    {
+      "name": "LIC Kalyan",
+      "count": 87
+    },
+    {
+      "name": "SBI Naupada branch",
+      "count": 76
+    },
+    {
+      "name": "LIC Vashi",
+      "count": 73
+    },
+    {
+      "name": "LIC Virar",
+      "count": 60
+    },
+    {
+      "name": "LIC Ghodbunder",
+      "count": 34
+    },
+    {
+      "name": "LIC Mumbai",
+      "count": 32
+    },
+    {
+      "name": "LIC Jogeshwari",
+      "count": 26
+    },
+    {
+      "name": "LIC Panvel",
+      "count": 22
+    },
+    {
+      "name": "LIC Andheri",
+      "count": 20
+    },
+    {
+      "name": "LIC Badlapur",
+      "count": 18
+    },
+    {
+      "name": "Income Tax Capital Gains",
+      "count": 12
+    },
+    {
+      "name": "Income Tax Visa",
+      "count": 7
+    },
+    {
+      "name": "SBI Naupada Branch",
+      "count": 7
+    },
+    {
+      "name": "LIC Dadar",
+      "count": 6
+    },
+    {
+      "name": "LIC PUNE",
+      "count": 5
+    },
+    {
+      "name": "PERSONAL",
+      "count": 5
+    },
+    {
+      "name": "TJSB BANK \nRAM MARUTI ROAD",
+      "count": 4
+    },
+    {
+      "name": "SBI Ghatkopar",
+      "count": 3
+    },
+    {
+      "name": "SBI Personal",
+      "count": 3
+    },
+    {
+      "name": "Area Office",
+      "count": 2
+    },
+    {
+      "name": "LIC NASHIK",
+      "count": 2
+    },
+    {
+      "name": "SBI GHATKOPAR",
+      "count": 2
+    },
+    {
+      "name": "SBI HLC Ghatkopar",
+      "count": 2
+    },
+    {
+      "name": "SBI JEKE GRAM BRANCH",
+      "count": 2
+    },
+    {
+      "name": "SBI KOLKATA BRA\nSBI PRINCE ANWAR SHAH RD",
+      "count": 2
+    },
+    {
+      "name": "SBI SANGAMNER",
+      "count": 2
+    },
+    {
+      "name": "TJSB Kalwa Branch",
+      "count": 2
+    },
+    {
+      "name": "LATUR BRANCH",
+      "count": 1
+    },
+    {
+      "name": "LIC AURANGABAD",
+      "count": 1
+    },
+    {
+      "name": "LIC GODHBUNDER ROAD",
+      "count": 1
+    },
+    {
+      "name": "LIC JALGAON",
+      "count": 1
+    },
+    {
+      "name": "LIC KHARGHAR",
+      "count": 1
+    },
+    {
+      "name": "LIC Pune",
+      "count": 1
+    },
+    {
+      "name": "LIC Sambhajinagar",
+      "count": 1
+    },
+    {
+      "name": "LIC VIRAR",
+      "count": 1
+    },
+    {
+      "name": "Personal",
+      "count": 1
+    },
+    {
+      "name": "SBI Anand Nagar Branch",
+      "count": 1
+    },
+    {
+      "name": "SBI ANJUR",
+      "count": 1
+    },
+    {
+      "name": "SBI Anjur Branch",
+      "count": 1
+    },
+    {
+      "name": "SBI ANJURPHATA",
+      "count": 1
+    },
+    {
+      "name": "SBI ANJURPHTA \nBRANCH",
+      "count": 1
+    },
+    {
+      "name": "SBI ANJURPHTA BRANCH",
+      "count": 1
+    },
+    {
+      "name": "SBI BENGLURE",
+      "count": 1
+    },
+    {
+      "name": "SBI Chinchpokali",
+      "count": 1
+    },
+    {
+      "name": "SBI CHINCHPOKALI",
+      "count": 1
+    },
+    {
+      "name": "SBI DHULE BRANCH",
+      "count": 1
+    },
+    {
+      "name": "sbi ghatkopar",
+      "count": 1
+    },
+    {
+      "name": "SBI GHATKOPER",
+      "count": 1
+    },
+    {
+      "name": "SBI Gorakhpur \nUttar Pradesh",
+      "count": 1
+    },
+    {
+      "name": "SBI HLC Chinchpokali",
+      "count": 1
+    },
+    {
+      "name": "SBI HLC Thane\nDELHI BRANCH",
+      "count": 1
+    },
+    {
+      "name": "SBI JAMUAI",
+      "count": 1
+    },
+    {
+      "name": "SBI JEKEGRAM \nBRNACH",
+      "count": 1
+    },
+    {
+      "name": "SBI KALYAN",
+      "count": 1
+    },
+    {
+      "name": "SBI LUKNOW BRANCH",
+      "count": 1
+    },
+    {
+      "name": "SBI Main Branch",
+      "count": 1
+    },
+    {
+      "name": "SBI MAIN BRANCH, \nAMRAVATI",
+      "count": 1
+    },
+    {
+      "name": "SBI NASHIK",
+      "count": 1
+    },
+    {
+      "name": "SBI RACPC THANE",
+      "count": 1
+    },
+    {
+      "name": "SBI SAKET BRANCH",
+      "count": 1
+    },
+    {
+      "name": "SBI SANGAMNER \nBRANCH",
+      "count": 1
+    },
+    {
+      "name": "SBI SANGAMNER \nGUJAR",
+      "count": 1
+    },
+    {
+      "name": "SBI SANGAMNER \nJAMDHADE",
+      "count": 1
+    },
+    {
+      "name": "SBI SHRIRAMPUR",
+      "count": 1
+    },
+    {
+      "name": "SBI Thane East branch",
+      "count": 1
+    },
+    {
+      "name": "SBI UTAR PARADESH",
+      "count": 1
+    },
+    {
+      "name": "SBI YERMALA BRANCH",
+      "count": 1
+    }
+  ],
+  "visitPersons": [
+    {
+      "name": "Akshay",
+      "count": 1221
+    },
+    {
+      "name": "Amit",
+      "count": 872
+    },
+    {
+      "name": "Sanket",
+      "count": 489
+    },
+    {
+      "name": "Ajit",
+      "count": 340
+    },
+    {
+      "name": "Nikesh",
+      "count": 302
+    },
+    {
+      "name": "Prashant",
+      "count": 205
+    },
+    {
+      "name": "---",
+      "count": 35
+    },
+    {
+      "name": "Sagar",
+      "count": 35
+    },
+    {
+      "name": "Rajendra",
+      "count": 20
+    },
+    {
+      "name": "SANTOSH",
+      "count": 19
+    },
+    {
+      "name": "Santosh",
+      "count": 12
+    },
+    {
+      "name": "----",
+      "count": 10
+    },
+    {
+      "name": "--",
+      "count": 7
+    },
+    {
+      "name": "SANKET",
+      "count": 5
+    },
+    {
+      "name": "SANTOSH KHUTE",
+      "count": 4
+    },
+    {
+      "name": "-----",
+      "count": 3
+    },
+    {
+      "name": "AJIT",
+      "count": 3
+    },
+    {
+      "name": "Nikesh\nAKSHAY",
+      "count": 3
+    },
+    {
+      "name": "-",
+      "count": 2
+    },
+    {
+      "name": "NIKESH",
+      "count": 2
+    },
+    {
+      "name": "santosh",
+      "count": 2
+    },
+    {
+      "name": "AK",
+      "count": 1
+    },
+    {
+      "name": "Akshay\n& Sir",
+      "count": 1
+    },
+    {
+      "name": "AMIT",
+      "count": 1
+    },
+    {
+      "name": "AMIT/SIR",
+      "count": 1
+    },
+    {
+      "name": "Field Executive",
+      "count": 1
+    },
+    {
+      "name": "Nikesh\nAkshay",
+      "count": 1
+    },
+    {
+      "name": "Prashant\nAmit",
+      "count": 1
+    },
+    {
+      "name": "Santosh khute",
+      "count": 1
+    },
+    {
+      "name": "santosh kuthe",
+      "count": 1
+    },
+    {
+      "name": "SIR",
+      "count": 1
+    },
+    {
+      "name": "Sonali",
+      "count": 1
+    },
+    {
+      "name": "SONALI",
+      "count": 1
+    }
+  ]
+}
