@@ -1,27 +1,27 @@
 {
   "year": 2026,
-  "updatedAt": "2026-10-04T20:12:04.861Z",
+  "updatedAt": "2026-10-05T16:09:37.342Z",
   "timezone": "Asia/Kolkata",
   "areaOffices": [
     {
       "name": "SBI HLC Kalyan",
-      "count": 365
+      "count": 367
     },
     {
       "name": "SBI HLC Thane",
-      "count": 289
+      "count": 291
     },
     {
       "name": "LIC Thane",
-      "count": 262
+      "count": 264
     },
     {
       "name": "LIC Nariman Point",
-      "count": 207
+      "count": 208
     },
     {
       "name": "LIC Ghatkopar",
-      "count": 160
+      "count": 162
     },
     {
       "name": "LIC Borivali",
@@ -29,7 +29,7 @@
     },
     {
       "name": "LIC Kalyan",
-      "count": 142
+      "count": 143
     },
     {
       "name": "LIC Khaghar",
@@ -37,15 +37,15 @@
     },
     {
       "name": "LIC Vashi",
-      "count": 73
+      "count": 74
     },
     {
       "name": "LIC Santacruz",
-      "count": 62
+      "count": 63
     },
     {
       "name": "LIC Andheri",
-      "count": 59
+      "count": 60
     },
     {
       "name": "SBI Main branch",
@@ -57,19 +57,19 @@
     },
     {
       "name": "LIC Ghodbunder",
-      "count": 44
+      "count": 45
     },
     {
       "name": "LIC Mumbai",
-      "count": 42
+      "count": 43
     },
     {
       "name": "LIC Panvel",
-      "count": 41
+      "count": 42
     },
     {
       "name": "SBI Naupada Branch",
-      "count": 27
+      "count": 28
     },
     {
       "name": "Can-Fin Borivali",
@@ -244,6 +244,10 @@
       "count": 1
     },
     {
+      "name": "TJSB  Ram Maruit",
+      "count": 1
+    },
+    {
       "name": "TJSB Khopat",
       "count": 1
     },
@@ -263,11 +267,11 @@
   "visitPersons": [
     {
       "name": "Akshay",
-      "count": 645
+      "count": 648
     },
     {
       "name": "Amit",
-      "count": 596
+      "count": 597
     },
     {
       "name": "Ajit",
@@ -275,7 +279,7 @@
     },
     {
       "name": "Sanket",
-      "count": 359
+      "count": 360
     },
     {
       "name": "Rajendra",
@@ -349,15 +353,15 @@
   "reportPreparedBy": [
     {
       "name": "Siddhi",
-      "count": 548
+      "count": 549
     },
     {
       "name": "Anushka",
-      "count": 506
+      "count": 505
     },
     {
       "name": "RAJ",
-      "count": 404
+      "count": 406
     },
     {
       "name": "Sonali",
@@ -416,6 +420,10 @@
       "count": 3
     },
     {
+      "name": "Anushka \nSiddhi",
+      "count": 3
+    },
+    {
       "name": "Anushka /sn",
       "count": 3
     },
@@ -437,10 +445,6 @@
     },
     {
       "name": "Anushka\nSiddhi",
-      "count": 2
-    },
-    {
-      "name": "Anushka \nSiddhi",
       "count": 2
     },
     {
