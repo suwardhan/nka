@@ -1,11 +1,11 @@
 {
   "year": 2026,
-  "updatedAt": "2026-10-05T20:12:20.517Z",
+  "updatedAt": "2026-10-06T19:17:21.899Z",
   "timezone": "Asia/Kolkata",
   "areaOffices": [
     {
       "name": "SBI HLC Kalyan",
-      "count": 367
+      "count": 368
     },
     {
       "name": "SBI HLC Thane",
@@ -13,11 +13,11 @@
     },
     {
       "name": "LIC Thane",
-      "count": 264
+      "count": 266
     },
     {
       "name": "LIC Nariman Point",
-      "count": 208
+      "count": 211
     },
     {
       "name": "LIC Ghatkopar",
@@ -25,7 +25,7 @@
     },
     {
       "name": "LIC Borivali",
-      "count": 153
+      "count": 157
     },
     {
       "name": "LIC Kalyan",
@@ -267,19 +267,19 @@
   "visitPersons": [
     {
       "name": "Akshay",
-      "count": 648
+      "count": 652
     },
     {
       "name": "Amit",
-      "count": 597
+      "count": 600
     },
     {
       "name": "Ajit",
-      "count": 531
+      "count": 535
     },
     {
       "name": "Sanket",
-      "count": 360
+      "count": 362
     },
     {
       "name": "Rajendra",
@@ -353,7 +353,7 @@
   "reportPreparedBy": [
     {
       "name": "Siddhi",
-      "count": 549
+      "count": 551
     },
     {
       "name": "Anushka",
@@ -361,11 +361,11 @@
     },
     {
       "name": "RAJ",
-      "count": 406
+      "count": 407
     },
     {
       "name": "Sonali",
-      "count": 324
+      "count": 329
     },
     {
       "name": "SONALI",
