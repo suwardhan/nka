@@ -1,47 +1,47 @@
 {
   "year": 2026,
-  "updatedAt": "2026-10-07T20:12:27.260Z",
+  "updatedAt": "2026-10-08T20:12:16.320Z",
   "timezone": "Asia/Kolkata",
   "areaOffices": [
     {
       "name": "SBI HLC Kalyan",
-      "count": 369
+      "count": 373
     },
     {
       "name": "SBI HLC Thane",
-      "count": 293
+      "count": 294
     },
     {
       "name": "LIC Thane",
-      "count": 266
+      "count": 267
     },
     {
       "name": "LIC Nariman Point",
-      "count": 212
+      "count": 213
     },
     {
       "name": "LIC Ghatkopar",
-      "count": 163
+      "count": 165
     },
     {
       "name": "LIC Borivali",
-      "count": 157
+      "count": 158
     },
     {
       "name": "LIC Kalyan",
-      "count": 143
+      "count": 144
     },
     {
       "name": "LIC Khaghar",
-      "count": 96
+      "count": 99
     },
     {
       "name": "LIC Vashi",
-      "count": 74
+      "count": 75
     },
     {
       "name": "LIC Santacruz",
-      "count": 64
+      "count": 65
     },
     {
       "name": "LIC Andheri",
@@ -65,7 +65,7 @@
     },
     {
       "name": "LIC Panvel",
-      "count": 42
+      "count": 43
     },
     {
       "name": "SBI Naupada Branch",
@@ -275,11 +275,11 @@
   "visitPersons": [
     {
       "name": "Akshay",
-      "count": 655
+      "count": 658
     },
     {
       "name": "Amit",
-      "count": 602
+      "count": 606
     },
     {
       "name": "Ajit",
@@ -287,7 +287,7 @@
     },
     {
       "name": "Sanket",
-      "count": 364
+      "count": 367
     },
     {
       "name": "Rajendra",
@@ -365,7 +365,7 @@
   "reportPreparedBy": [
     {
       "name": "Siddhi",
-      "count": 556
+      "count": 559
     },
     {
       "name": "Anushka",
@@ -373,15 +373,15 @@
     },
     {
       "name": "RAJ",
-      "count": 410
+      "count": 413
     },
     {
       "name": "Sonali",
-      "count": 333
+      "count": 336
     },
     {
       "name": "SONALI",
-      "count": 109
+      "count": 110
     },
     {
       "name": "Sanket",
