@@ -1,4 +1,4 @@
-import { cpSync, mkdirSync, rmSync, existsSync, copyFileSync } from 'node:fs'
+import { cpSync, mkdirSync, rmSync, existsSync } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -15,10 +15,7 @@ rmSync(targetDir, { recursive: true, force: true })
 mkdirSync(targetDir, { recursive: true })
 cpSync(distDir, targetDir, { recursive: true })
 
-// GitHub Pages SPA fallback for client-side routes under /admin
-copyFileSync(
-  path.join(targetDir, 'index.html'),
-  path.join(targetDir, '404.html'),
-)
+// Note: GitHub Pages SPA deep-link fallback lives in repo-root 404.html
+// (subdirectory 404.html is ignored by GitHub Pages).
 
 console.log(`Copied admin build to ${targetDir}`)

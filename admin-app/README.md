@@ -22,7 +22,9 @@ cd admin-app
 npm run build:site
 ```
 
-Then commit the generated `../admin` folder and push to `master`.
+Then commit the generated `../admin` folder (and repo-root `404.html` if changed) and push to `master`.
+
+Deep links under `/admin/*` rely on the repo-root [`404.html`](../404.html) SPA fallback for GitHub Pages refreshes.
 
 Env vars are baked into the production bundle at build time:
 
