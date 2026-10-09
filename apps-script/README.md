@@ -4,7 +4,15 @@ Aggregates the private Office-Register sheet and saves a daily JSON snapshot to 
 
 `admin/data/{year}.json`
 
-The admin UI normally reads that static JSON (fast). **Refresh data** rebuilds from the sheet and commits the file to GitHub.
+For **2024–2026**, Refresh also builds a case-search index at:
+
+`admin/data/{year}-cases.json`
+
+(Applicant A, Address I, Project J, Area office L, Report link AI smart chips.)
+
+The admin UI normally reads that static JSON (fast). **Refresh data** rebuilds from the sheet and commits the file(s) to GitHub.
+
+**Reminder:** 2021–2023 are not included in case search yet — confirm their column layout before enabling.
 
 ## Deploy / update
 
@@ -24,6 +32,7 @@ The admin UI normally reads that static JSON (fast). **Refresh data** rebuilds f
 4. Deploy → Manage deployments → Edit → **New version** → Deploy.
 5. In the editor, run `setupDailyTrigger` once (1am Asia/Kolkata daily).
 6. File → Project settings → set project timezone to **Asia/Kolkata** if needed.
+7. Case search reads Report Link **smart chips** via the Sheets API. On first Refresh after updating `Code.gs`, approve any new OAuth prompt. If chip URLs are missing, enable the **Google Sheets API** for the Apps Script project (Services / Google Cloud console) and redeploy.
 
 ## Admin env
 

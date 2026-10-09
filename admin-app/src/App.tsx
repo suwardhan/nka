@@ -6,6 +6,7 @@ import { BanksPage } from '@/pages/BanksPage'
 import { DashboardPage } from '@/pages/DashboardPage'
 import { LoginPage } from '@/pages/LoginPage'
 import { ReportPreparedByPage } from '@/pages/ReportPreparedByPage'
+import { SearchPage } from '@/pages/SearchPage'
 import { VisitPersonsPage } from '@/pages/VisitPersonsPage'
 
 export default function App() {
@@ -50,6 +51,14 @@ export default function App() {
           element={
             <RequireAuth>
               <ReportPreparedByPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/dashboard/search"
+          element={
+            <RequireAuth>
+              <SearchPage />
             </RequireAuth>
           }
         />

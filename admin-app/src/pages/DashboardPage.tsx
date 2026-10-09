@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
+import { Search } from 'lucide-react'
 import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 
 import { AdminHeader } from '@/components/AdminHeader'
@@ -164,9 +165,17 @@ export function DashboardPage() {
       <AdminHeader
         title="Admin dashboard"
         actions={
-          <Button variant="outline" onClick={handleLogout}>
-            Sign out
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button asChild variant="outline">
+              <Link to="/dashboard/search">
+                <Search />
+                Search cases
+              </Link>
+            </Button>
+            <Button variant="outline" onClick={handleLogout}>
+              Sign out
+            </Button>
+          </div>
         }
       />
 
