@@ -1,4 +1,4 @@
-import { YEAR_CONFIG } from '@/config/years'
+import { CASE_SEARCH_YEARS, YEAR_CONFIG } from '@/config/years'
 import { mergeNamedCounts } from '@/lib/names'
 
 export type NamedCount = {
@@ -8,13 +8,26 @@ export type NamedCount = {
   mergedFrom?: string[]
 }
 
-export type DashboardSnapshot = {
+export type ReportLink = {
+  label: string
+  url: string | null
+}
+
+export type CaseRecord = {
+  year: number
+  row: number
+  applicantName: string
+  address: string
+  projectName: string
+  areaOffice: string
+  reportLinks: ReportLink[]
+}
+
+export type CasesSnapshot = {
   year: number
   updatedAt: string
   timezone?: string
-  areaOffices: NamedCount[]
-  visitPersons: NamedCount[]
-  reportPreparedBy: NamedCount[]
+  cases: CaseRecord[]
   github?: {
     ok: boolean
     path?: string
@@ -24,7 +37,36 @@ export type DashboardSnapshot = {
   }
 }
 
+export type DashboardSnapshot = {
+  year: number
+  updatedAt: string
+  timezone?: string
+  areaOffices: NamedCount[]
+  visitPersons: NamedCount[]
+  reportPreparedBy: NamedCount[]
+  /** Present on live refresh responses for case-search years; not stored in dashboard JSON. */
+  cases?: CaseRecord[]
+  github?: {
+    ok: boolean
+    path?: string
+    branch?: string
+    commitSha?: string
+    error?: string
+  }
+  casesGithub?: {
+    ok: boolean
+    path?: string
+    branch?: string
+    commitSha?: string
+    error?: string
+  }
+}
+
 type SnapshotResponse = DashboardSnapshot & {
+  error?: string
+}
+
+type CasesResponse = CasesSnapshot & {
   error?: string
 }
 
@@ -62,6 +104,30 @@ function writeLocalCache(snapshot: DashboardSnapshot): void {
   localStorage.setItem(cacheKey(snapshot.year), JSON.stringify(snapshot))
 }
 
+/** Parse JSON from a fetch response; return null for HTML/SPA fallbacks or invalid bodies. */
+async function readJsonResponse<T>(response: Response): Promise<T | null> {
+  const contentType = response.headers.get('content-type') || ''
+  const text = await response.text()
+  const trimmed = text.trim()
+  if (!trimmed || trimmed.startsWith('<')) {
+    return null
+  }
+  if (
+    contentType &&
+    !contentType.includes('application/json') &&
+    !contentType.includes('text/plain') &&
+    !trimmed.startsWith('{') &&
+    !trimmed.startsWith('[')
+  ) {
+    return null
+  }
+  try {
+    return JSON.parse(trimmed) as T
+  } catch {
+    return null
+  }
+}
+
 async function fetchStaticSnapshot(
   year: number,
 ): Promise<DashboardSnapshot | null> {
@@ -71,8 +137,8 @@ async function fetchStaticSnapshot(
   if (!response.ok) {
     return null
   }
-  const json = (await response.json()) as SnapshotResponse
-  if (json.error) {
+  const json = await readJsonResponse<SnapshotResponse>(response)
+  if (!json || json.error) {
     return null
   }
   return normalizeSnapshot(year, json)
@@ -168,12 +234,297 @@ export async function refreshDashboardSnapshot(
     throw new Error(`Snapshot refresh failed (${response.status})`)
   }
 
-  const json = (await response.json()) as SnapshotResponse
+  const json = await readJsonResponse<SnapshotResponse>(response)
+  if (!json) {
+    throw new Error(
+      `Snapshot refresh for ${year} returned HTML instead of JSON. Check VITE_SHEETS_PROXY_URL matches the latest Apps Script /exec deployment, and that access is "Anyone".`,
+    )
+  }
   if (json.error) {
     throw new Error(json.error)
   }
 
   const snapshot = normalizeSnapshot(year, json)
   writeLocalCache(snapshot)
+
+  if (YEAR_CONFIG[year]?.caseSearch && Array.isArray(json.cases)) {
+    const casesSnapshot = normalizeCasesSnapshot(year, {
+      year,
+      updatedAt: snapshot.updatedAt,
+      timezone: snapshot.timezone,
+      cases: json.cases,
+      github: json.casesGithub,
+    })
+    writeCasesLocalCache(casesSnapshot)
+    snapshot.cases = casesSnapshot.cases
+    snapshot.casesGithub = json.casesGithub
+  }
+
   return snapshot
 }
+
+function normalizeReportLinks(raw: unknown): ReportLink[] {
+  if (!Array.isArray(raw)) {
+    return []
+  }
+  return raw
+    .map((item) => {
+      if (!item || typeof item !== 'object') {
+        return null
+      }
+      const record = item as { label?: unknown; url?: unknown }
+      const label = String(record.label ?? '').trim()
+      const urlRaw = record.url
+      const url =
+        typeof urlRaw === 'string' && urlRaw.trim() ? urlRaw.trim() : null
+      if (!label && !url) {
+        return null
+      }
+      return { label: label || 'Open report', url }
+    })
+    .filter((item): item is ReportLink => item != null)
+}
+
+function normalizeCaseRecord(year: number, raw: unknown): CaseRecord | null {
+  if (!raw || typeof raw !== 'object') {
+    return null
+  }
+  const record = raw as Partial<CaseRecord>
+  const applicantName = String(record.applicantName ?? '').trim()
+  const address = String(record.address ?? '').trim()
+  const projectName = String(record.projectName ?? '').trim()
+  const areaOffice = String(record.areaOffice ?? '').trim()
+  if (!applicantName && !address && !projectName) {
+    return null
+  }
+  return {
+    year: Number(record.year) || year,
+    row: Number(record.row) || 0,
+    applicantName,
+    address,
+    projectName,
+    areaOffice,
+    reportLinks: normalizeReportLinks(record.reportLinks),
+  }
+}
+
+function normalizeCasesSnapshot(
+  year: number,
+  json: Partial<CasesResponse>,
+): CasesSnapshot {
+  const cases = Array.isArray(json.cases)
+    ? json.cases
+        .map((item) => normalizeCaseRecord(year, item))
+        .filter((item): item is CaseRecord => item != null)
+    : []
+  return {
+    year: Number(json.year) || year,
+    updatedAt: json.updatedAt || new Date().toISOString(),
+    timezone: json.timezone || 'Asia/Kolkata',
+    cases,
+    github: json.github,
+  }
+}
+
+const casesCacheKey = (year: number) => `nka_cases_snapshot_v1_${year}`
+
+function readCasesLocalCache(year: number): CasesSnapshot | null {
+  try {
+    const raw = localStorage.getItem(casesCacheKey(year))
+    if (!raw) {
+      return null
+    }
+    return normalizeCasesSnapshot(year, JSON.parse(raw) as CasesResponse)
+  } catch {
+    return null
+  }
+}
+
+function writeCasesLocalCache(snapshot: CasesSnapshot): void {
+  localStorage.setItem(casesCacheKey(snapshot.year), JSON.stringify(snapshot))
+}
+
+async function fetchStaticCasesSnapshot(
+  year: number,
+): Promise<CasesSnapshot | null> {
+  const response = await fetch(
+    `${import.meta.env.BASE_URL}data/${year}-cases.json`,
+    { cache: 'no-cache' },
+  )
+  if (!response.ok) {
+    return null
+  }
+  const json = await readJsonResponse<CasesResponse>(response)
+  if (!json || json.error) {
+    return null
+  }
+  return normalizeCasesSnapshot(year, json)
+}
+
+/**
+ * Load case-search index for one year (static JSON vs localStorage).
+ */
+export async function loadCasesSnapshot(year: number): Promise<CasesSnapshot> {
+  if (!YEAR_CONFIG[year]?.caseSearch) {
+    throw new Error(`Case search is not configured for year ${year}`)
+  }
+
+  const cached = readCasesLocalCache(year)
+  const staticSnapshot = await fetchStaticCasesSnapshot(year)
+
+  if (cached && staticSnapshot) {
+    const cachedTime = Date.parse(cached.updatedAt)
+    const staticTime = Date.parse(staticSnapshot.updatedAt)
+    const newest =
+      !Number.isNaN(cachedTime) &&
+      !Number.isNaN(staticTime) &&
+      cachedTime >= staticTime
+        ? cached
+        : staticSnapshot
+    writeCasesLocalCache(newest)
+    return newest
+  }
+
+  if (staticSnapshot) {
+    writeCasesLocalCache(staticSnapshot)
+    return staticSnapshot
+  }
+
+  if (cached) {
+    return cached
+  }
+
+  throw new Error(
+    `No case search index for ${year}. Click Refresh to build one from the spreadsheet.`,
+  )
+}
+
+/**
+ * Load case-search indexes for all configured years (2024–2026).
+ * Years that fail still return an empty list so partial data remains usable.
+ */
+export async function loadAllCasesSnapshots(): Promise<{
+  cases: CaseRecord[]
+  updatedAt: string | null
+  errors: string[]
+}> {
+  const results = await Promise.all(
+    CASE_SEARCH_YEARS.map(async (year) => {
+      try {
+        const snapshot = await loadCasesSnapshot(year)
+        return { snapshot, error: null as string | null }
+      } catch (err) {
+        return {
+          snapshot: null,
+          error:
+            err instanceof Error
+              ? err.message
+              : `Failed to load cases for ${year}`,
+        }
+      }
+    }),
+  )
+
+  const cases: CaseRecord[] = []
+  const errors: string[] = []
+  let newestUpdatedAt: string | null = null
+  let newestTime = Number.NEGATIVE_INFINITY
+
+  for (const result of results) {
+    if (result.error) {
+      errors.push(result.error)
+      continue
+    }
+    if (!result.snapshot) {
+      continue
+    }
+    cases.push(...result.snapshot.cases)
+    const time = Date.parse(result.snapshot.updatedAt)
+    if (!Number.isNaN(time) && time > newestTime) {
+      newestTime = time
+      newestUpdatedAt = result.snapshot.updatedAt
+    }
+  }
+
+  return { cases, updatedAt: newestUpdatedAt, errors }
+}
+
+/**
+ * Refresh dashboard + case index for every case-search year.
+ */
+export async function refreshAllCasesSnapshots(): Promise<{
+  cases: CaseRecord[]
+  updatedAt: string | null
+  notes: string[]
+  errors: string[]
+}> {
+  const notes: string[] = []
+  const errors: string[] = []
+  const cases: CaseRecord[] = []
+  let newestUpdatedAt: string | null = null
+  let newestTime = Number.NEGATIVE_INFINITY
+
+  for (const year of CASE_SEARCH_YEARS) {
+    try {
+      const snapshot = await refreshDashboardSnapshot(year)
+      const yearCases = Array.isArray(snapshot.cases) ? snapshot.cases : []
+      if (yearCases.length > 0) {
+        cases.push(...yearCases)
+      } else {
+        // Refresh may have written cache; re-read in case response omitted cases.
+        try {
+          const loaded = await loadCasesSnapshot(year)
+          cases.push(...loaded.cases)
+        } catch {
+          notes.push(`${year}: refreshed dashboard, but no cases returned yet.`)
+        }
+      }
+
+      const time = Date.parse(snapshot.updatedAt)
+      if (!Number.isNaN(time) && time > newestTime) {
+        newestTime = time
+        newestUpdatedAt = snapshot.updatedAt
+      }
+
+      if (snapshot.casesGithub?.ok) {
+        notes.push(`${year}: cases saved to GitHub.`)
+      } else if (snapshot.casesGithub?.error) {
+        notes.push(
+          `${year}: cases refreshed locally. GitHub save skipped: ${snapshot.casesGithub.error}`,
+        )
+      } else if (snapshot.github?.ok) {
+        notes.push(`${year}: dashboard saved to GitHub.`)
+      }
+    } catch (err) {
+      errors.push(
+        err instanceof Error
+          ? `${year}: ${err.message}`
+          : `${year}: refresh failed`,
+      )
+    }
+  }
+
+  return { cases, updatedAt: newestUpdatedAt, notes, errors }
+}
+
+const MIN_SEARCH_LENGTH = 2
+
+/** Case-insensitive partial match on applicant, address, or project name. */
+export function searchCases(
+  cases: CaseRecord[],
+  query: string,
+): CaseRecord[] {
+  const needle = query.trim().toLowerCase()
+  if (needle.length < MIN_SEARCH_LENGTH) {
+    return []
+  }
+  return cases.filter((item) => {
+    return (
+      item.applicantName.toLowerCase().includes(needle) ||
+      item.address.toLowerCase().includes(needle) ||
+      item.projectName.toLowerCase().includes(needle)
+    )
+  })
+}
+
+export { MIN_SEARCH_LENGTH }

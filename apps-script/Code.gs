@@ -19,8 +19,12 @@
  *    (Apps Script project timezone should be Asia/Kolkata)
  *
  * Web API:
- * - action=refresh (default for writes)  rebuild snapshot + commit to GitHub
+ * - action=refresh (default for writes)  rebuild snapshot + cases + commit to GitHub
  * - action=aggregate                     rebuild snapshot only (no GitHub write)
+ *
+ * Case search index (2024–2026):
+ * - Commits admin/data/{year}-cases.json alongside the dashboard snapshot
+ * - Columns: A applicant, I address, J project, L area office, AI report link chips
  */
 
 /** Per-year spreadsheet + 0-based column indexes. */
@@ -30,36 +34,54 @@ var YEAR_CONFIG = {
     areaOfficeColumn: 11, // L
     visitPersonColumn: 17, // R
     reportPreparedByColumn: 32, // AG
+    applicantColumn: 0, // A
+    addressColumn: 8, // I
+    projectColumn: 9, // J
+    reportLinkColumn: 34, // AI
+    includeCases: true,
   },
   '2025': {
     spreadsheetId: '1lh2IS6CWxDi6f11tnT-1oRu6BL7mcGtBd4BK8H92zN0',
     areaOfficeColumn: 11, // L
     visitPersonColumn: 17, // R
     reportPreparedByColumn: 32, // AG
+    applicantColumn: 0, // A
+    addressColumn: 8, // I
+    projectColumn: 9, // J
+    reportLinkColumn: 34, // AI
+    includeCases: true,
   },
   '2024': {
     spreadsheetId: '1eEv8bD1qRsNrkWWpmaseH1nGsCQQMyDygEGnvNtufdo',
     areaOfficeColumn: 11, // L
     visitPersonColumn: 17, // R
     reportPreparedByColumn: 32, // AG
+    applicantColumn: 0, // A
+    addressColumn: 8, // I
+    projectColumn: 9, // J
+    reportLinkColumn: 34, // AI
+    includeCases: true,
   },
   '2023': {
     spreadsheetId: '14BJqq9GgMsysoROc8pfBB-8MpGWZXaeNkllTL_SzTQA',
     areaOfficeColumn: 10, // K
     visitPersonColumn: 13, // N
     reportPreparedByColumn: 28, // AC
+    includeCases: false,
   },
   '2022': {
     spreadsheetId: '16qZ3zcG2pvmesNqGuHn3xs4qK8gT_uamqdzvnkOYWNw',
     areaOfficeColumn: 10, // K
     visitPersonColumn: 13, // N
     reportPreparedByColumn: 28, // AC
+    includeCases: false,
   },
   '2021': {
     spreadsheetId: '1GD4z3kUB7_c-QsCj3Vzlm-74f9zgjhWeqKNyAtSCXdo',
     areaOfficeColumn: 10, // K
     visitPersonColumn: 13, // N
     reportPreparedByColumn: 28, // AC
+    includeCases: false,
   },
 }
 
@@ -117,8 +139,37 @@ function refreshAndCommit_(year, params) {
     return snapshot
   }
 
-  var commit = commitSnapshotToGithub_(year, snapshot)
+  var cases = snapshot.cases || null
+  var dashboard = {}
+  var keys = Object.keys(snapshot)
+  for (var i = 0; i < keys.length; i++) {
+    if (keys[i] === 'cases') {
+      continue
+    }
+    dashboard[keys[i]] = snapshot[keys[i]]
+  }
+
+  var commit = commitJsonToGithub_(
+    String(year) + '.json',
+    dashboard,
+    'chore(admin): refresh ' + year + ' dashboard snapshot',
+  )
   snapshot.github = commit
+
+  if (cases) {
+    var casesPayload = {
+      year: Number(year) || year,
+      updatedAt: snapshot.updatedAt,
+      timezone: snapshot.timezone || 'Asia/Kolkata',
+      cases: cases,
+    }
+    snapshot.casesGithub = commitJsonToGithub_(
+      String(year) + '-cases.json',
+      casesPayload,
+      'chore(admin): refresh ' + year + ' cases search index',
+    )
+  }
+
   return snapshot
 }
 
@@ -179,7 +230,7 @@ function buildSnapshot_(year, params) {
     reportPreparedBy = aggregateColumn_(values, reportPreparedByColumn)
   }
 
-  return {
+  var result = {
     year: Number(year) || year,
     updatedAt: new Date().toISOString(),
     timezone: 'Asia/Kolkata',
@@ -187,6 +238,198 @@ function buildSnapshot_(year, params) {
     visitPersons: visitPersons,
     reportPreparedBy: reportPreparedBy,
   }
+
+  var includeCases =
+    params.includeCases === '0' || params.includeCases === 'false'
+      ? false
+      : yearCfg.includeCases === true
+
+  if (includeCases && values && values.length >= 2) {
+    result.cases = buildCases_(
+      spreadsheetId,
+      sheet,
+      sheetName,
+      values,
+      yearCfg,
+      Number(year) || year,
+    )
+  }
+
+  return result
+}
+
+function buildCases_(spreadsheetId, sheet, sheetName, values, yearCfg, year) {
+  var applicantColumn = yearCfg.applicantColumn
+  var addressColumn = yearCfg.addressColumn
+  var projectColumn = yearCfg.projectColumn
+  var areaOfficeColumn = yearCfg.areaOfficeColumn
+  var reportLinkColumn = yearCfg.reportLinkColumn
+
+  var reportLinkLetter = columnIndexToLetter_(reportLinkColumn)
+  var linkCells = fetchReportLinkCells_(
+    spreadsheetId,
+    sheetName,
+    reportLinkLetter,
+  )
+
+  var displayLinks = []
+  if (values.length > 0) {
+    displayLinks = sheet
+      .getRange(1, reportLinkColumn + 1, values.length, reportLinkColumn + 1)
+      .getDisplayValues()
+  }
+
+  var cases = []
+  for (var i = 1; i < values.length; i++) {
+    var row = values[i]
+    if (!row) {
+      continue
+    }
+
+    var applicantName = cellText_(row, applicantColumn)
+    var address = cellText_(row, addressColumn)
+    var projectName = cellText_(row, projectColumn)
+    var areaOffice = cellText_(row, areaOfficeColumn)
+
+    if (!applicantName && !address && !projectName) {
+      continue
+    }
+
+    var displayText =
+      displayLinks[i] && displayLinks[i][0] != null
+        ? String(displayLinks[i][0])
+        : ''
+    var reportLinks = parseReportLinks_(displayText, linkCells[i] || null)
+
+    cases.push({
+      year: year,
+      row: i + 1,
+      applicantName: applicantName,
+      address: address,
+      projectName: projectName,
+      areaOffice: areaOffice,
+      reportLinks: reportLinks,
+    })
+  }
+
+  return cases
+}
+
+/**
+ * Read AI-column smart chips / hyperlinks via Sheets API v4.
+ * Returns an array aligned to sheet rows (0-based); missing rows are null.
+ */
+function fetchReportLinkCells_(spreadsheetId, sheetName, columnLetter) {
+  var token = ScriptApp.getOAuthToken()
+  var rangeA1 = "'" + String(sheetName).replace(/'/g, "''") + "'!" + columnLetter + ':' + columnLetter
+  var apiUrl =
+    'https://sheets.googleapis.com/v4/spreadsheets/' +
+    encodeURIComponent(spreadsheetId) +
+    '?includeGridData=true&ranges=' +
+    encodeURIComponent(rangeA1) +
+    '&fields=' +
+    encodeURIComponent(
+      'sheets.data.rowData.values(formattedValue,hyperlink,chipRuns)',
+    )
+
+  var res = UrlFetchApp.fetch(apiUrl, {
+    method: 'get',
+    headers: {
+      Authorization: 'Bearer ' + token,
+    },
+    muteHttpExceptions: true,
+  })
+
+  if (res.getResponseCode() < 200 || res.getResponseCode() >= 300) {
+    // Fall back to display-only links (url null) rather than failing the whole refresh.
+    return []
+  }
+
+  var parsed = JSON.parse(res.getContentText())
+  var rowData =
+    parsed &&
+    parsed.sheets &&
+    parsed.sheets[0] &&
+    parsed.sheets[0].data &&
+    parsed.sheets[0].data[0] &&
+    parsed.sheets[0].data[0].rowData
+      ? parsed.sheets[0].data[0].rowData
+      : []
+
+  var cells = []
+  for (var i = 0; i < rowData.length; i++) {
+    var values = rowData[i] && rowData[i].values ? rowData[i].values : null
+    cells[i] = values && values[0] ? values[0] : null
+  }
+  return cells
+}
+
+function parseReportLinks_(displayText, cellData) {
+  var urls = []
+  var seen = {}
+
+  function addUrl(url) {
+    var trimmed = String(url || '').trim()
+    if (!trimmed || seen[trimmed]) {
+      return
+    }
+    seen[trimmed] = true
+    urls.push(trimmed)
+  }
+
+  if (cellData && cellData.hyperlink) {
+    addUrl(cellData.hyperlink)
+  }
+
+  var chipRuns = (cellData && cellData.chipRuns) || []
+  for (var i = 0; i < chipRuns.length; i++) {
+    var chip = chipRuns[i] && chipRuns[i].chip
+    if (chip && chip.richLinkProperties && chip.richLinkProperties.uri) {
+      addUrl(chip.richLinkProperties.uri)
+    }
+  }
+
+  var labels = String(displayText || '')
+    .split(/\r?\n/)
+    .map(function (part) {
+      return String(part || '').trim()
+    })
+    .filter(function (part) {
+      // Chip placeholders from API are often just "@"
+      return part && part !== '@'
+    })
+
+  if (urls.length === 0 && labels.length === 0) {
+    return []
+  }
+
+  if (urls.length === 0) {
+    return labels.map(function (label) {
+      return { label: label, url: null }
+    })
+  }
+
+  return urls.map(function (url, index) {
+    var label = labels[index] || labels[0] || 'Open report'
+    return { label: label, url: url }
+  })
+}
+
+function cellText_(row, columnIndex) {
+  if (columnIndex == null || columnIndex < 0 || !row || row.length <= columnIndex) {
+    return ''
+  }
+  return String(row[columnIndex] || '').trim()
+}
+
+function columnIndexToLetter_(index) {
+  var n = index
+  var label = ''
+  while (n >= 0) {
+    label = String.fromCharCode((n % 26) + 65) + label
+    n = Math.floor(n / 26) - 1
+  }
+  return label
 }
 
 function aggregateColumn_(values, columnIndex) {
@@ -212,7 +455,7 @@ function aggregateColumn_(values, columnIndex) {
     })
 }
 
-function commitSnapshotToGithub_(year, snapshot) {
+function commitJsonToGithub_(fileName, payload, message) {
   var props = PropertiesService.getScriptProperties()
   var token = props.getProperty('GITHUB_TOKEN')
   if (!token) {
@@ -230,7 +473,7 @@ function commitSnapshotToGithub_(year, snapshot) {
   if (prefix.slice(-1) !== '/') {
     prefix += '/'
   }
-  var path = prefix + String(year) + '.json'
+  var path = prefix + fileName
   var apiBase =
     'https://api.github.com/repos/' + owner + '/' + repo + '/contents/' + path
 
@@ -250,9 +493,9 @@ function commitSnapshotToGithub_(year, snapshot) {
   }
 
   var body = {
-    message: 'chore(admin): refresh ' + year + ' dashboard snapshot',
+    message: message,
     content: Utilities.base64Encode(
-      JSON.stringify(snapshot, null, 2) + '\n',
+      JSON.stringify(payload, null, 2) + '\n',
       Utilities.Charset.UTF_8,
     ),
     branch: branch,
