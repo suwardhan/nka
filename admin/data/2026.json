@@ -1,39 +1,39 @@
 {
   "year": 2026,
-  "updatedAt": "2026-10-08T20:12:16.320Z",
+  "updatedAt": "2026-10-09T14:01:17.249Z",
   "timezone": "Asia/Kolkata",
   "areaOffices": [
     {
       "name": "SBI HLC Kalyan",
-      "count": 373
+      "count": 374
     },
     {
       "name": "SBI HLC Thane",
-      "count": 294
+      "count": 295
     },
     {
       "name": "LIC Thane",
-      "count": 267
+      "count": 269
     },
     {
       "name": "LIC Nariman Point",
-      "count": 213
+      "count": 215
     },
     {
       "name": "LIC Ghatkopar",
-      "count": 165
+      "count": 166
     },
     {
       "name": "LIC Borivali",
-      "count": 158
+      "count": 159
     },
     {
       "name": "LIC Kalyan",
-      "count": 144
+      "count": 145
     },
     {
       "name": "LIC Khaghar",
-      "count": 99
+      "count": 100
     },
     {
       "name": "LIC Vashi",
@@ -41,15 +41,15 @@
     },
     {
       "name": "LIC Santacruz",
-      "count": 65
+      "count": 67
     },
     {
       "name": "LIC Andheri",
-      "count": 60
+      "count": 61
     },
     {
       "name": "SBI Main branch",
-      "count": 54
+      "count": 55
     },
     {
       "name": "LIC Virar",
@@ -275,11 +275,11 @@
   "visitPersons": [
     {
       "name": "Akshay",
-      "count": 658
+      "count": 663
     },
     {
       "name": "Amit",
-      "count": 606
+      "count": 608
     },
     {
       "name": "Ajit",
@@ -287,7 +287,7 @@
     },
     {
       "name": "Sanket",
-      "count": 367
+      "count": 373
     },
     {
       "name": "Rajendra",
@@ -365,7 +365,7 @@
   "reportPreparedBy": [
     {
       "name": "Siddhi",
-      "count": 559
+      "count": 560
     },
     {
       "name": "Anushka",
@@ -373,11 +373,11 @@
     },
     {
       "name": "RAJ",
-      "count": 413
+      "count": 415
     },
     {
       "name": "Sonali",
-      "count": 336
+      "count": 338
     },
     {
       "name": "SONALI",
