@@ -1,454 +1,695 @@
 {
   "year": 2025,
-  "updatedAt": "2026-10-03T20:36:25.001793Z",
+  "updatedAt": "2026-10-08T20:12:11.362Z",
   "timezone": "Asia/Kolkata",
   "areaOffices": [
     {
-      "count": 495,
-      "name": "SBI HLC Thane"
+      "name": "SBI HLC Thane",
+      "count": 495
     },
     {
-      "count": 449,
-      "name": "LIC Ghatkopar"
+      "name": "LIC Ghatkopar",
+      "count": 449
     },
     {
-      "count": 425,
-      "name": "LIC Thane"
+      "name": "LIC Thane",
+      "count": 425
     },
     {
-      "count": 404,
-      "name": "LIC Nariman Point"
+      "name": "LIC Nariman Point",
+      "count": 404
     },
     {
-      "count": 310,
-      "name": "LIC Borivali"
+      "name": "LIC Borivali",
+      "count": 310
     },
     {
-      "count": 260,
-      "name": "SBI RACPC Thane"
+      "name": "SBI RACPC Thane",
+      "count": 260
     },
     {
-      "count": 248,
-      "name": "SBI HLC Kalyan"
+      "name": "SBI HLC Kalyan",
+      "count": 248
     },
     {
-      "count": 154,
-      "name": "SBI RACPC Kalyan"
+      "name": "SBI RACPC Kalyan",
+      "count": 154
     },
     {
-      "count": 149,
-      "name": "LIC Santacruz"
+      "name": "LIC Santacruz",
+      "count": 149
     },
     {
-      "count": 134,
-      "name": "LIC Khaghar"
+      "name": "LIC Khaghar",
+      "count": 134
     },
     {
-      "count": 90,
-      "name": "SBI Main branch"
+      "name": "SBI Main branch",
+      "count": 90
     },
     {
-      "count": 87,
-      "name": "LIC Kalyan"
+      "name": "LIC Kalyan",
+      "count": 87
     },
     {
-      "count": 76,
-      "name": "SBI Naupada branch"
+      "name": "SBI Naupada branch",
+      "count": 76
     },
     {
-      "count": 73,
-      "name": "LIC Vashi"
+      "name": "LIC Vashi",
+      "count": 73
     },
     {
-      "count": 60,
-      "name": "LIC Virar"
+      "name": "LIC Virar",
+      "count": 60
     },
     {
-      "count": 34,
-      "name": "LIC Ghodbunder"
+      "name": "LIC Ghodbunder",
+      "count": 34
     },
     {
-      "count": 32,
-      "name": "LIC Mumbai"
+      "name": "LIC Mumbai",
+      "count": 32
     },
     {
-      "count": 26,
-      "name": "LIC Jogeshwari"
+      "name": "LIC Jogeshwari",
+      "count": 26
     },
     {
-      "count": 22,
-      "name": "LIC Panvel"
+      "name": "LIC Panvel",
+      "count": 22
     },
     {
-      "count": 20,
-      "name": "LIC Andheri"
+      "name": "LIC Andheri",
+      "count": 20
     },
     {
-      "count": 18,
-      "name": "LIC Badlapur"
+      "name": "LIC Badlapur",
+      "count": 18
     },
     {
-      "count": 12,
-      "name": "Income Tax Capital Gains"
+      "name": "Income Tax Capital Gains",
+      "count": 12
     },
     {
-      "count": 7,
-      "name": "Income Tax Visa"
+      "name": "Income Tax Visa",
+      "count": 7
     },
     {
-      "count": 7,
-      "name": "SBI Naupada Branch"
+      "name": "SBI Naupada Branch",
+      "count": 7
     },
     {
-      "count": 6,
-      "name": "LIC Dadar"
+      "name": "LIC Dadar",
+      "count": 6
     },
     {
-      "count": 5,
-      "name": "LIC PUNE"
+      "name": "LIC PUNE",
+      "count": 5
     },
     {
-      "count": 5,
-      "name": "PERSONAL"
+      "name": "PERSONAL",
+      "count": 5
     },
     {
-      "count": 4,
-      "name": "TJSB BANK \nRAM MARUTI ROAD"
+      "name": "TJSB BANK \nRAM MARUTI ROAD",
+      "count": 4
     },
     {
-      "count": 3,
-      "name": "SBI Ghatkopar"
+      "name": "SBI Ghatkopar",
+      "count": 3
     },
     {
-      "count": 3,
-      "name": "SBI Personal"
+      "name": "SBI Personal",
+      "count": 3
     },
     {
-      "count": 2,
-      "name": "Area Office"
+      "name": "Area Office",
+      "count": 2
     },
     {
-      "count": 2,
-      "name": "LIC NASHIK"
+      "name": "LIC NASHIK",
+      "count": 2
     },
     {
-      "count": 2,
-      "name": "SBI GHATKOPAR"
+      "name": "SBI GHATKOPAR",
+      "count": 2
     },
     {
-      "count": 2,
-      "name": "SBI HLC Ghatkopar"
+      "name": "SBI HLC Ghatkopar",
+      "count": 2
     },
     {
-      "count": 2,
-      "name": "SBI JEKE GRAM BRANCH"
+      "name": "SBI JEKE GRAM BRANCH",
+      "count": 2
     },
     {
-      "count": 2,
-      "name": "SBI KOLKATA BRA\nSBI PRINCE ANWAR SHAH RD"
+      "name": "SBI KOLKATA BRA\nSBI PRINCE ANWAR SHAH RD",
+      "count": 2
     },
     {
-      "count": 2,
-      "name": "SBI SANGAMNER"
+      "name": "SBI SANGAMNER",
+      "count": 2
     },
     {
-      "count": 2,
-      "name": "TJSB Kalwa Branch"
+      "name": "TJSB Kalwa Branch",
+      "count": 2
     },
     {
-      "count": 1,
-      "name": "LATUR BRANCH"
+      "name": "LATUR BRANCH",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "LIC AURANGABAD"
+      "name": "LIC AURANGABAD",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "LIC GODHBUNDER ROAD"
+      "name": "LIC GODHBUNDER ROAD",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "LIC JALGAON"
+      "name": "LIC JALGAON",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "LIC KHARGHAR"
+      "name": "LIC KHARGHAR",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "LIC Pune"
+      "name": "LIC Pune",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "LIC Sambhajinagar"
+      "name": "LIC Sambhajinagar",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "LIC VIRAR"
+      "name": "LIC VIRAR",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "Personal"
+      "name": "Personal",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI Anand Nagar Branch"
+      "name": "SBI Anand Nagar Branch",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI ANJUR"
+      "name": "SBI ANJUR",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI Anjur Branch"
+      "name": "SBI Anjur Branch",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI ANJURPHATA"
+      "name": "SBI ANJURPHATA",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI ANJURPHTA \nBRANCH"
+      "name": "SBI ANJURPHTA \nBRANCH",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI ANJURPHTA BRANCH"
+      "name": "SBI ANJURPHTA BRANCH",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI BENGLURE"
+      "name": "SBI BENGLURE",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI Chinchpokali"
+      "name": "SBI Chinchpokali",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI CHINCHPOKALI"
+      "name": "SBI CHINCHPOKALI",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI DHULE BRANCH"
+      "name": "SBI DHULE BRANCH",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "sbi ghatkopar"
+      "name": "sbi ghatkopar",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI GHATKOPER"
+      "name": "SBI GHATKOPER",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI Gorakhpur \nUttar Pradesh"
+      "name": "SBI Gorakhpur \nUttar Pradesh",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI HLC Chinchpokali"
+      "name": "SBI HLC Chinchpokali",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI HLC Thane\nDELHI BRANCH"
+      "name": "SBI HLC Thane\nDELHI BRANCH",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI JAMUAI"
+      "name": "SBI JAMUAI",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI JEKEGRAM \nBRNACH"
+      "name": "SBI JEKEGRAM \nBRNACH",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI KALYAN"
+      "name": "SBI KALYAN",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI LUKNOW BRANCH"
+      "name": "SBI LUKNOW BRANCH",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI Main Branch"
+      "name": "SBI Main Branch",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI MAIN BRANCH, \nAMRAVATI"
+      "name": "SBI MAIN BRANCH, \nAMRAVATI",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI NASHIK"
+      "name": "SBI NASHIK",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI RACPC THANE"
+      "name": "SBI RACPC THANE",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI SAKET BRANCH"
+      "name": "SBI SAKET BRANCH",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI SANGAMNER \nBRANCH"
+      "name": "SBI SANGAMNER \nBRANCH",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI SANGAMNER \nGUJAR"
+      "name": "SBI SANGAMNER \nGUJAR",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI SANGAMNER \nJAMDHADE"
+      "name": "SBI SANGAMNER \nJAMDHADE",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI SHRIRAMPUR"
+      "name": "SBI SHRIRAMPUR",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI Thane East branch"
+      "name": "SBI Thane East branch",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI UTAR PARADESH"
+      "name": "SBI UTAR PARADESH",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SBI YERMALA BRANCH"
+      "name": "SBI YERMALA BRANCH",
+      "count": 1
     }
   ],
   "visitPersons": [
     {
-      "count": 1221,
-      "name": "Akshay"
+      "name": "Akshay",
+      "count": 1221
     },
     {
-      "count": 872,
-      "name": "Amit"
+      "name": "Amit",
+      "count": 872
     },
     {
-      "count": 489,
-      "name": "Sanket"
+      "name": "Sanket",
+      "count": 489
     },
     {
-      "count": 340,
-      "name": "Ajit"
+      "name": "Ajit",
+      "count": 340
     },
     {
-      "count": 302,
-      "name": "Nikesh"
+      "name": "Nikesh",
+      "count": 302
     },
     {
-      "count": 205,
-      "name": "Prashant"
+      "name": "Prashant",
+      "count": 205
     },
     {
-      "count": 35,
-      "name": "---"
+      "name": "---",
+      "count": 35
     },
     {
-      "count": 35,
-      "name": "Sagar"
+      "name": "Sagar",
+      "count": 35
     },
     {
-      "count": 20,
-      "name": "Rajendra"
+      "name": "Rajendra",
+      "count": 20
     },
     {
-      "count": 19,
-      "name": "SANTOSH"
+      "name": "SANTOSH",
+      "count": 19
     },
     {
-      "count": 12,
-      "name": "Santosh"
+      "name": "Santosh",
+      "count": 12
     },
     {
-      "count": 10,
-      "name": "----"
+      "name": "----",
+      "count": 10
     },
     {
-      "count": 7,
-      "name": "--"
+      "name": "--",
+      "count": 7
     },
     {
-      "count": 5,
-      "name": "SANKET"
+      "name": "SANKET",
+      "count": 5
     },
     {
-      "count": 4,
-      "name": "SANTOSH KHUTE"
+      "name": "SANTOSH KHUTE",
+      "count": 4
     },
     {
-      "count": 3,
-      "name": "-----"
+      "name": "-----",
+      "count": 3
     },
     {
-      "count": 3,
-      "name": "AJIT"
+      "name": "AJIT",
+      "count": 3
     },
     {
-      "count": 3,
-      "name": "Nikesh\nAKSHAY"
+      "name": "Nikesh\nAKSHAY",
+      "count": 3
     },
     {
-      "count": 2,
-      "name": "-"
+      "name": "-",
+      "count": 2
     },
     {
-      "count": 2,
-      "name": "NIKESH"
+      "name": "NIKESH",
+      "count": 2
     },
     {
-      "count": 2,
-      "name": "santosh"
+      "name": "santosh",
+      "count": 2
     },
     {
-      "count": 1,
-      "name": "AK"
+      "name": "AK",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "Akshay\n& Sir"
+      "name": "Akshay\n& Sir",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "AMIT"
+      "name": "AMIT",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "AMIT/SIR"
+      "name": "AMIT/SIR",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "Field Executive"
+      "name": "Field Executive",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "Nikesh\nAkshay"
+      "name": "Nikesh\nAkshay",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "Prashant\nAmit"
+      "name": "Prashant\nAmit",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "Santosh khute"
+      "name": "Santosh khute",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "santosh kuthe"
+      "name": "santosh kuthe",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SIR"
+      "name": "SIR",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "Sonali"
+      "name": "Sonali",
+      "count": 1
     },
     {
-      "count": 1,
-      "name": "SONALI"
+      "name": "SONALI",
+      "count": 1
     }
   ],
-  "reportPreparedBy": []
+  "reportPreparedBy": [
+    {
+      "name": "Siddhi",
+      "count": 1076
+    },
+    {
+      "name": "Anushka",
+      "count": 575
+    },
+    {
+      "name": "RAJ",
+      "count": 528
+    },
+    {
+      "name": "Sonali",
+      "count": 411
+    },
+    {
+      "name": "Mansi",
+      "count": 247
+    },
+    {
+      "name": "Sanket",
+      "count": 133
+    },
+    {
+      "name": "SONALI",
+      "count": 117
+    },
+    {
+      "name": "RAKHI",
+      "count": 59
+    },
+    {
+      "name": "rajshree",
+      "count": 39
+    },
+    {
+      "name": "rakhi",
+      "count": 35
+    },
+    {
+      "name": "sonali",
+      "count": 22
+    },
+    {
+      "name": "Rakhi",
+      "count": 21
+    },
+    {
+      "name": "MANSI",
+      "count": 18
+    },
+    {
+      "name": "SANKET",
+      "count": 18
+    },
+    {
+      "name": "RAJSHREE",
+      "count": 12
+    },
+    {
+      "name": "SOnali",
+      "count": 11
+    },
+    {
+      "name": "SIDDHI",
+      "count": 7
+    },
+    {
+      "name": "SoNALI",
+      "count": 7
+    },
+    {
+      "name": "siddhi",
+      "count": 5
+    },
+    {
+      "name": "sOnali",
+      "count": 5
+    },
+    {
+      "name": "ANUSHKA",
+      "count": 3
+    },
+    {
+      "name": "Siddhi\nRAJ",
+      "count": 3
+    },
+    {
+      "name": "Siddhi\nSiddhi",
+      "count": 3
+    },
+    {
+      "name": "---",
+      "count": 2
+    },
+    {
+      "name": "Anushak",
+      "count": 2
+    },
+    {
+      "name": "Mansi\nSiddhi",
+      "count": 2
+    },
+    {
+      "name": "raj",
+      "count": 2
+    },
+    {
+      "name": "Rajashree",
+      "count": 2
+    },
+    {
+      "name": "Sidddhi",
+      "count": 2
+    },
+    {
+      "name": "sONALI",
+      "count": 2
+    },
+    {
+      "name": "Sonali\nSiddhi",
+      "count": 2
+    },
+    {
+      "name": "SONALI\nSiddhi",
+      "count": 2
+    },
+    {
+      "name": "Karpet",
+      "count": 1
+    },
+    {
+      "name": "Manasi",
+      "count": 1
+    },
+    {
+      "name": "mansi",
+      "count": 1
+    },
+    {
+      "name": "Mansi\n    \"",
+      "count": 1
+    },
+    {
+      "name": "Mansi\nRAJ",
+      "count": 1
+    },
+    {
+      "name": "Mansi\nsONALI",
+      "count": 1
+    },
+    {
+      "name": "Mansi\nSonali",
+      "count": 1
+    },
+    {
+      "name": "Mansi - Rental\nRAJ - REPORT",
+      "count": 1
+    },
+    {
+      "name": "Raj",
+      "count": 1
+    },
+    {
+      "name": "RAJ \nSiddhi",
+      "count": 1
+    },
+    {
+      "name": "RAJ \nSonali",
+      "count": 1
+    },
+    {
+      "name": "RAJ /SONALI",
+      "count": 1
+    },
+    {
+      "name": "Rajashre",
+      "count": 1
+    },
+    {
+      "name": "Rajendra",
+      "count": 1
+    },
+    {
+      "name": "rajhsree",
+      "count": 1
+    },
+    {
+      "name": "RAK",
+      "count": 1
+    },
+    {
+      "name": "rakhi\nSonali",
+      "count": 1
+    },
+    {
+      "name": "Report Prepared by",
+      "count": 1
+    },
+    {
+      "name": "RJ/SD",
+      "count": 1
+    },
+    {
+      "name": "sanket",
+      "count": 1
+    },
+    {
+      "name": "Sanket\nSiddhi",
+      "count": 1
+    },
+    {
+      "name": "Sanket`",
+      "count": 1
+    },
+    {
+      "name": "SD/SN",
+      "count": 1
+    },
+    {
+      "name": "Siddhi/Sonali",
+      "count": 1
+    },
+    {
+      "name": "Sidhi",
+      "count": 1
+    },
+    {
+      "name": "soNALI",
+      "count": 1
+    },
+    {
+      "name": "sonali\nSiddhi",
+      "count": 1
+    },
+    {
+      "name": "SONALI/RAJ",
+      "count": 1
+    }
+  ]
 }

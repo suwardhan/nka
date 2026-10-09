@@ -1,51 +1,51 @@
 {
   "year": 2026,
-  "updatedAt": "2026-10-04T09:06:08.389Z",
+  "updatedAt": "2026-10-08T20:12:16.320Z",
   "timezone": "Asia/Kolkata",
   "areaOffices": [
     {
       "name": "SBI HLC Kalyan",
-      "count": 365
+      "count": 373
     },
     {
       "name": "SBI HLC Thane",
-      "count": 289
+      "count": 294
     },
     {
       "name": "LIC Thane",
-      "count": 262
+      "count": 267
     },
     {
       "name": "LIC Nariman Point",
-      "count": 207
+      "count": 213
     },
     {
       "name": "LIC Ghatkopar",
-      "count": 160
+      "count": 165
     },
     {
       "name": "LIC Borivali",
-      "count": 153
+      "count": 158
     },
     {
       "name": "LIC Kalyan",
-      "count": 142
+      "count": 144
     },
     {
       "name": "LIC Khaghar",
-      "count": 95
+      "count": 99
     },
     {
       "name": "LIC Vashi",
-      "count": 73
+      "count": 75
     },
     {
       "name": "LIC Santacruz",
-      "count": 62
+      "count": 65
     },
     {
       "name": "LIC Andheri",
-      "count": 59
+      "count": 60
     },
     {
       "name": "SBI Main branch",
@@ -57,19 +57,19 @@
     },
     {
       "name": "LIC Ghodbunder",
-      "count": 44
+      "count": 45
     },
     {
       "name": "LIC Mumbai",
-      "count": 42
+      "count": 43
     },
     {
       "name": "LIC Panvel",
-      "count": 41
+      "count": 43
     },
     {
       "name": "SBI Naupada Branch",
-      "count": 27
+      "count": 28
     },
     {
       "name": "Can-Fin Borivali",
@@ -168,6 +168,10 @@
       "count": 1
     },
     {
+      "name": "Can Fin Thane",
+      "count": 1
+    },
+    {
       "name": "Can-Fin BORIVALI",
       "count": 1
     },
@@ -244,6 +248,10 @@
       "count": 1
     },
     {
+      "name": "TJSB  Ram Maruit",
+      "count": 1
+    },
+    {
       "name": "TJSB Khopat",
       "count": 1
     },
@@ -258,24 +266,28 @@
     {
       "name": "TJSB RAM MARUTI BRANCH",
       "count": 1
+    },
+    {
+      "name": "TJSB Ram maruti Road",
+      "count": 1
     }
   ],
   "visitPersons": [
     {
       "name": "Akshay",
-      "count": 645
+      "count": 658
     },
     {
       "name": "Amit",
-      "count": 596
+      "count": 606
     },
     {
       "name": "Ajit",
-      "count": 531
+      "count": 535
     },
     {
       "name": "Sanket",
-      "count": 359
+      "count": 367
     },
     {
       "name": "Rajendra",
@@ -330,6 +342,10 @@
       "count": 1
     },
     {
+      "name": "Ajit / Amit",
+      "count": 1
+    },
+    {
       "name": "Akshay/sanket",
       "count": 1
     },
@@ -349,23 +365,23 @@
   "reportPreparedBy": [
     {
       "name": "Siddhi",
-      "count": 548
+      "count": 559
     },
     {
       "name": "Anushka",
-      "count": 506
+      "count": 505
     },
     {
       "name": "RAJ",
-      "count": 404
+      "count": 413
     },
     {
       "name": "Sonali",
-      "count": 324
+      "count": 336
     },
     {
       "name": "SONALI",
-      "count": 108
+      "count": 110
     },
     {
       "name": "Sanket",
@@ -416,6 +432,10 @@
       "count": 3
     },
     {
+      "name": "Anushka \nSiddhi",
+      "count": 3
+    },
+    {
       "name": "Anushka /sn",
       "count": 3
     },
@@ -437,10 +457,6 @@
     },
     {
       "name": "Anushka\nSiddhi",
-      "count": 2
-    },
-    {
-      "name": "Anushka \nSiddhi",
       "count": 2
     },
     {

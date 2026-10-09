@@ -24,7 +24,11 @@ npm run build:site
 
 Then commit the generated `../admin` folder (and repo-root `404.html` if changed) and push to `master`.
 
+`build:site` preserves existing `../admin/data` so a deploy does not overwrite newer spreadsheet snapshots with older `public/data` copies.
+
 Deep links under `/admin/*` rely on the repo-root [`404.html`](../404.html) SPA fallback for GitHub Pages refreshes.
+
+Visit persons / Report prepared by names are case-normalized in the app on load (Title Case, merged spellings on hover).
 
 Env vars are baked into the production bundle at build time:
 

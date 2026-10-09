@@ -1,8 +1,11 @@
 import { YEAR_CONFIG } from '@/config/years'
+import { mergeNamedCounts } from '@/lib/names'
 
 export type NamedCount = {
   name: string
   count: number
+  /** Original spellings when case variants were merged into `name`. */
+  mergedFrom?: string[]
 }
 
 export type DashboardSnapshot = {
@@ -25,7 +28,8 @@ type SnapshotResponse = DashboardSnapshot & {
   error?: string
 }
 
-const cacheKey = (year: number) => `nka_dashboard_snapshot_${year}`
+// v4: also merge dash placeholders (--/---) into "(blank)"
+const cacheKey = (year: number) => `nka_dashboard_snapshot_v4_${year}`
 
 function normalizeSnapshot(
   year: number,
@@ -36,8 +40,8 @@ function normalizeSnapshot(
     updatedAt: json.updatedAt || new Date().toISOString(),
     timezone: json.timezone || 'Asia/Kolkata',
     areaOffices: json.areaOffices ?? [],
-    visitPersons: json.visitPersons ?? [],
-    reportPreparedBy: json.reportPreparedBy ?? [],
+    visitPersons: mergeNamedCounts(json.visitPersons ?? []),
+    reportPreparedBy: mergeNamedCounts(json.reportPreparedBy ?? []),
     github: json.github,
   }
 }
