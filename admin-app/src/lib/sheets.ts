@@ -60,6 +60,14 @@ export type DashboardSnapshot = {
     commitSha?: string
     error?: string
   }
+  ingest?: {
+    ok: boolean
+    status?: number
+    error?: string
+  }
+  cache?: {
+    ok: boolean
+  }
 }
 
 type SnapshotResponse = DashboardSnapshot & {
@@ -73,6 +81,16 @@ type CasesResponse = CasesSnapshot & {
 // v4: also merge dash placeholders (--/---) into "(blank)"
 const cacheKey = (year: number) => `nka_dashboard_snapshot_v4_${year}`
 
+function adminApiBase(): string {
+  const base = import.meta.env.VITE_ADMIN_API_URL?.replace(/\/$/, '')
+  if (!base) {
+    throw new Error(
+      'Missing VITE_ADMIN_API_URL. Set it in admin-app/.env (see .env.example).',
+    )
+  }
+  return base
+}
+
 function normalizeSnapshot(
   year: number,
   json: Partial<SnapshotResponse>,
@@ -85,6 +103,8 @@ function normalizeSnapshot(
     visitPersons: mergeNamedCounts(json.visitPersons ?? []),
     reportPreparedBy: mergeNamedCounts(json.reportPreparedBy ?? []),
     github: json.github,
+    ingest: json.ingest,
+    cache: json.cache,
   }
 }
 
@@ -128,12 +148,11 @@ async function readJsonResponse<T>(response: Response): Promise<T | null> {
   }
 }
 
-async function fetchStaticSnapshot(
-  year: number,
-): Promise<DashboardSnapshot | null> {
-  const response = await fetch(`${import.meta.env.BASE_URL}data/${year}.json`, {
-    cache: 'no-cache',
-  })
+async function fetchApiSnapshot(year: number): Promise<DashboardSnapshot | null> {
+  const response = await fetch(
+    `${adminApiBase()}/snapshot?year=${encodeURIComponent(String(year))}`,
+    { cache: 'no-cache', credentials: 'include' },
+  )
   if (!response.ok) {
     return null
   }
@@ -145,7 +164,7 @@ async function fetchStaticSnapshot(
 }
 
 /**
- * Fast path: pick the newest of static repo JSON vs localStorage cache.
+ * Fast path: pick the newest of Worker API snapshot vs localStorage cache.
  */
 export async function loadDashboardSnapshot(
   year: number,
@@ -155,24 +174,30 @@ export async function loadDashboardSnapshot(
   }
 
   const cached = readLocalCache(year)
-  const staticSnapshot = await fetchStaticSnapshot(year)
 
-  if (cached && staticSnapshot) {
+  let apiSnapshot: DashboardSnapshot | null = null
+  try {
+    apiSnapshot = await fetchApiSnapshot(year)
+  } catch {
+    apiSnapshot = null
+  }
+
+  if (cached && apiSnapshot) {
     const cachedTime = Date.parse(cached.updatedAt)
-    const staticTime = Date.parse(staticSnapshot.updatedAt)
+    const apiTime = Date.parse(apiSnapshot.updatedAt)
     const newest =
       !Number.isNaN(cachedTime) &&
-      !Number.isNaN(staticTime) &&
-      cachedTime >= staticTime
+      !Number.isNaN(apiTime) &&
+      cachedTime >= apiTime
         ? cached
-        : staticSnapshot
+        : apiSnapshot
     writeLocalCache(newest)
     return newest
   }
 
-  if (staticSnapshot) {
-    writeLocalCache(staticSnapshot)
-    return staticSnapshot
+  if (apiSnapshot) {
+    writeLocalCache(apiSnapshot)
+    return apiSnapshot
   }
 
   if (cached) {
@@ -185,59 +210,30 @@ export async function loadDashboardSnapshot(
 }
 
 /**
- * Slow path: aggregate from Google Sheet via Apps Script and optionally
- * commit admin/public/data/{year}.json to GitHub.
+ * Slow path: rebuild via Cloudflare Worker → Apps Script and cache in KV.
  */
 export async function refreshDashboardSnapshot(
   year: number,
 ): Promise<DashboardSnapshot> {
-  const yearConfig = YEAR_CONFIG[year]
-  if (!yearConfig) {
+  if (!YEAR_CONFIG[year]) {
     throw new Error(`No spreadsheet configured for year ${year}`)
   }
 
-  const proxyUrl = import.meta.env.VITE_SHEETS_PROXY_URL
-  const proxyKey = import.meta.env.VITE_SHEETS_PROXY_KEY
-
-  if (!proxyUrl) {
-    throw new Error(
-      'Missing VITE_SHEETS_PROXY_URL. Deploy the Apps Script and set it in admin/.env',
-    )
-  }
-  if (!proxyKey) {
-    throw new Error(
-      'Missing VITE_SHEETS_PROXY_KEY. Set it in admin/.env to match the Apps Script key.',
-    )
-  }
-
-  const url = new URL(proxyUrl)
-  url.searchParams.set('key', proxyKey)
-  url.searchParams.set('action', 'refresh')
-  url.searchParams.set('year', String(year))
-  url.searchParams.set('spreadsheetId', yearConfig.spreadsheetId)
-  url.searchParams.set('sheetName', yearConfig.sheetName)
-  url.searchParams.set(
-    'areaOfficeColumn',
-    String(yearConfig.areaOfficeColumnIndex),
+  const response = await fetch(
+    `${adminApiBase()}/refresh?year=${encodeURIComponent(String(year))}`,
+    { method: 'POST', credentials: 'include' },
   )
-  url.searchParams.set(
-    'visitPersonColumn',
-    String(yearConfig.visitPersonColumnIndex),
-  )
-  url.searchParams.set(
-    'reportPreparedByColumn',
-    String(yearConfig.reportPreparedByColumnIndex),
-  )
-
-  const response = await fetch(url.toString())
   if (!response.ok) {
-    throw new Error(`Snapshot refresh failed (${response.status})`)
+    const failed = await readJsonResponse<SnapshotResponse>(response)
+    throw new Error(
+      failed?.error || `Snapshot refresh failed (${response.status})`,
+    )
   }
 
   const json = await readJsonResponse<SnapshotResponse>(response)
   if (!json) {
     throw new Error(
-      `Snapshot refresh for ${year} returned HTML instead of JSON. Check VITE_SHEETS_PROXY_URL matches the latest Apps Script /exec deployment, and that access is "Anyone".`,
+      `Snapshot refresh for ${year} returned HTML instead of JSON. Check Cloudflare Access and VITE_ADMIN_API_URL.`,
     )
   }
   if (json.error) {
@@ -344,12 +340,12 @@ function writeCasesLocalCache(snapshot: CasesSnapshot): void {
   localStorage.setItem(casesCacheKey(snapshot.year), JSON.stringify(snapshot))
 }
 
-async function fetchStaticCasesSnapshot(
+async function fetchApiCasesSnapshot(
   year: number,
 ): Promise<CasesSnapshot | null> {
   const response = await fetch(
-    `${import.meta.env.BASE_URL}data/${year}-cases.json`,
-    { cache: 'no-cache' },
+    `${adminApiBase()}/cases?year=${encodeURIComponent(String(year))}`,
+    { cache: 'no-cache', credentials: 'include' },
   )
   if (!response.ok) {
     return null
@@ -362,7 +358,7 @@ async function fetchStaticCasesSnapshot(
 }
 
 /**
- * Load case-search index for one year (static JSON vs localStorage).
+ * Load case-search index for one year (Worker API vs localStorage).
  */
 export async function loadCasesSnapshot(year: number): Promise<CasesSnapshot> {
   if (!YEAR_CONFIG[year]?.caseSearch) {
@@ -370,24 +366,30 @@ export async function loadCasesSnapshot(year: number): Promise<CasesSnapshot> {
   }
 
   const cached = readCasesLocalCache(year)
-  const staticSnapshot = await fetchStaticCasesSnapshot(year)
 
-  if (cached && staticSnapshot) {
+  let apiSnapshot: CasesSnapshot | null = null
+  try {
+    apiSnapshot = await fetchApiCasesSnapshot(year)
+  } catch {
+    apiSnapshot = null
+  }
+
+  if (cached && apiSnapshot) {
     const cachedTime = Date.parse(cached.updatedAt)
-    const staticTime = Date.parse(staticSnapshot.updatedAt)
+    const apiTime = Date.parse(apiSnapshot.updatedAt)
     const newest =
       !Number.isNaN(cachedTime) &&
-      !Number.isNaN(staticTime) &&
-      cachedTime >= staticTime
+      !Number.isNaN(apiTime) &&
+      cachedTime >= apiTime
         ? cached
-        : staticSnapshot
+        : apiSnapshot
     writeCasesLocalCache(newest)
     return newest
   }
 
-  if (staticSnapshot) {
-    writeCasesLocalCache(staticSnapshot)
-    return staticSnapshot
+  if (apiSnapshot) {
+    writeCasesLocalCache(apiSnapshot)
+    return apiSnapshot
   }
 
   if (cached) {
@@ -471,7 +473,6 @@ export async function refreshAllCasesSnapshots(): Promise<{
       if (yearCases.length > 0) {
         cases.push(...yearCases)
       } else {
-        // Refresh may have written cache; re-read in case response omitted cases.
         try {
           const loaded = await loadCasesSnapshot(year)
           cases.push(...loaded.cases)
@@ -486,14 +487,14 @@ export async function refreshAllCasesSnapshots(): Promise<{
         newestUpdatedAt = snapshot.updatedAt
       }
 
-      if (snapshot.casesGithub?.ok) {
-        notes.push(`${year}: cases saved to GitHub.`)
-      } else if (snapshot.casesGithub?.error) {
+      if (snapshot.cache?.ok || snapshot.ingest?.ok) {
+        notes.push(`${year}: refreshed and cached on server.`)
+      } else if (snapshot.ingest?.error) {
         notes.push(
-          `${year}: cases refreshed locally. GitHub save skipped: ${snapshot.casesGithub.error}`,
+          `${year}: refreshed. Server cache note: ${snapshot.ingest.error}`,
         )
-      } else if (snapshot.github?.ok) {
-        notes.push(`${year}: dashboard saved to GitHub.`)
+      } else {
+        notes.push(`${year}: refreshed.`)
       }
     } catch (err) {
       errors.push(

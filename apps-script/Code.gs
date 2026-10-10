@@ -1,29 +1,33 @@
 /**
- * NKA admin dashboard data proxy + daily GitHub JSON snapshot.
+ * NKA admin dashboard data proxy.
  *
  * Deploy as Web app:
  * - Execute as: Me
  * - Who has access: Anyone
  *
  * Script Properties (Project Settings > Script properties):
- * - PROXY_KEY          (required) same as VITE_SHEETS_PROXY_KEY
- * - GITHUB_TOKEN       (required for refresh/daily commit)
- * - GITHUB_OWNER       default: suwardhan
- * - GITHUB_REPO        default: nka
- * - GITHUB_BRANCH      default: master
- * - GITHUB_FILE_PREFIX default: admin/data/
+ * - PROXY_KEY             (required) shared with Cloudflare Worker
+ * - COMMIT_TO_GITHUB      "true" to also write JSON to GitHub (default: off)
+ * - GITHUB_TOKEN          only if COMMIT_TO_GITHUB=true
+ * - GITHUB_OWNER          default: suwardhan
+ * - GITHUB_REPO           default: nka
+ * - GITHUB_BRANCH         default: master
+ * - GITHUB_FILE_PREFIX    default: admin/data/
+ * - WORKER_INGEST_URL     e.g. https://nka-admin-api.<account>.workers.dev/internal/ingest
+ *                         or https://narendravaluers.in/admin-api/internal/ingest
+ * - WORKER_INGEST_SECRET  same as Worker INGEST_SECRET
  *
  * Daily trigger (IST):
  * 1. Run function setupDailyTrigger once in the editor
  * 2. Or Triggers > Add trigger > dailyRefresh > Time-driven > Day timer > 1am-2am
  *    (Apps Script project timezone should be Asia/Kolkata)
  *
- * Web API:
- * - action=refresh (default for writes)  rebuild snapshot + cases + commit to GitHub
- * - action=aggregate                     rebuild snapshot only (no GitHub write)
+ * Web API (all require ?key=PROXY_KEY):
+ * - action=refresh     rebuild snapshot + cases; optionally commit; push to Worker KV
+ * - action=aggregate   rebuild dashboard snapshot (includes cases when configured)
+ * - action=cases       rebuild case-search index only
  *
  * Case search index (2024–2026):
- * - Commits admin/data/{year}-cases.json alongside the dashboard snapshot
  * - Columns: A applicant, I address, J project, L area office, AI report link chips
  */
 
@@ -102,7 +106,11 @@ function doGet(e) {
       return json_(refreshAndCommit_(year, params))
     }
 
-    // Default: live aggregate (used by refresh internals / debugging)
+    if (action === 'cases') {
+      return json_(buildCasesSnapshot_(year, params))
+    }
+
+    // Default: live aggregate (used by Worker cache-miss / debugging)
     return json_(buildSnapshot_(year, params))
   } catch (err) {
     return json_({ error: String(err && err.message ? err.message : err) })
@@ -133,6 +141,12 @@ function dailyRefresh() {
   }
 }
 
+function commitToGithubEnabled_() {
+  var props = PropertiesService.getScriptProperties()
+  var flag = String(props.getProperty('COMMIT_TO_GITHUB') || '').toLowerCase()
+  return flag === 'true' || flag === '1' || flag === 'yes'
+}
+
 function refreshAndCommit_(year, params) {
   var snapshot = buildSnapshot_(year, params)
   if (snapshot.error) {
@@ -149,28 +163,109 @@ function refreshAndCommit_(year, params) {
     dashboard[keys[i]] = snapshot[keys[i]]
   }
 
-  var commit = commitJsonToGithub_(
-    String(year) + '.json',
-    dashboard,
-    'chore(admin): refresh ' + year + ' dashboard snapshot',
-  )
-  snapshot.github = commit
-
-  if (cases) {
-    var casesPayload = {
-      year: Number(year) || year,
-      updatedAt: snapshot.updatedAt,
-      timezone: snapshot.timezone || 'Asia/Kolkata',
-      cases: cases,
-    }
-    snapshot.casesGithub = commitJsonToGithub_(
-      String(year) + '-cases.json',
-      casesPayload,
-      'chore(admin): refresh ' + year + ' cases search index',
+  if (commitToGithubEnabled_()) {
+    var commit = commitJsonToGithub_(
+      String(year) + '.json',
+      dashboard,
+      'chore(admin): refresh ' + year + ' dashboard snapshot',
     )
+    snapshot.github = commit
+
+    if (cases) {
+      var casesPayload = {
+        year: Number(year) || year,
+        updatedAt: snapshot.updatedAt,
+        timezone: snapshot.timezone || 'Asia/Kolkata',
+        cases: cases,
+      }
+      snapshot.casesGithub = commitJsonToGithub_(
+        String(year) + '-cases.json',
+        casesPayload,
+        'chore(admin): refresh ' + year + ' cases search index',
+      )
+    }
+  } else {
+    snapshot.github = { ok: false, error: 'COMMIT_TO_GITHUB disabled' }
+    if (cases) {
+      snapshot.casesGithub = { ok: false, error: 'COMMIT_TO_GITHUB disabled' }
+    }
   }
 
+  var casesForIngest = cases
+    ? {
+        year: Number(year) || year,
+        updatedAt: snapshot.updatedAt,
+        timezone: snapshot.timezone || 'Asia/Kolkata',
+        cases: cases,
+      }
+    : null
+  snapshot.ingest = pushToWorkerIngest_(year, dashboard, casesForIngest)
+
   return snapshot
+}
+
+function buildCasesSnapshot_(year, params) {
+  var yearCfg = YEAR_CONFIG[String(year)] || {}
+  if (!yearCfg.includeCases) {
+    return { error: 'Case search is not configured for year ' + year }
+  }
+
+  var snapshot = buildSnapshot_(year, params)
+  if (snapshot.error) {
+    return snapshot
+  }
+  if (!snapshot.cases) {
+    return { error: 'No cases built for year ' + year }
+  }
+
+  return {
+    year: snapshot.year,
+    updatedAt: snapshot.updatedAt,
+    timezone: snapshot.timezone || 'Asia/Kolkata',
+    cases: snapshot.cases,
+  }
+}
+
+function pushToWorkerIngest_(year, dashboard, casesPayload) {
+  var props = PropertiesService.getScriptProperties()
+  var ingestUrl = props.getProperty('WORKER_INGEST_URL')
+  var ingestSecret = props.getProperty('WORKER_INGEST_SECRET')
+
+  if (!ingestUrl || !ingestSecret) {
+    return {
+      ok: false,
+      error: 'WORKER_INGEST_URL / WORKER_INGEST_SECRET not set',
+    }
+  }
+
+  var body = {
+    year: Number(year) || year,
+    dashboard: dashboard,
+  }
+  if (casesPayload) {
+    body.cases = casesPayload
+  }
+
+  var res = UrlFetchApp.fetch(ingestUrl, {
+    method: 'post',
+    contentType: 'application/json',
+    payload: JSON.stringify(body),
+    headers: {
+      Authorization: 'Bearer ' + ingestSecret,
+    },
+    muteHttpExceptions: true,
+  })
+
+  var code = res.getResponseCode()
+  var text = res.getContentText()
+  if (code >= 200 && code < 300) {
+    return { ok: true, status: code }
+  }
+
+  return {
+    ok: false,
+    error: 'Worker ingest failed (' + code + '): ' + text,
+  }
 }
 
 function buildSnapshot_(year, params) {

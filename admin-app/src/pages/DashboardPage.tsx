@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Search } from 'lucide-react'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 import { AdminHeader } from '@/components/AdminHeader'
 import { HorizontalCountChart } from '@/components/HorizontalCountChart'
@@ -31,7 +31,6 @@ import { formatIstDateTime, formatRelativeTime } from '@/lib/time'
 const TOP_N = 8
 
 export function DashboardPage() {
-  const navigate = useNavigate()
   const [searchParams, setSearchParams] = useSearchParams()
   const yearParam = Number(searchParams.get('year'))
   const year = AVAILABLE_YEARS.includes(yearParam) ? yearParam : DEFAULT_YEAR
@@ -135,11 +134,11 @@ export function DashboardPage() {
     try {
       const result = await refreshDashboardSnapshot(year)
       setSnapshot(result)
-      if (result.github?.ok) {
-        setRefreshNote('Snapshot saved to GitHub.')
-      } else if (result.github?.error) {
+      if (result.cache?.ok || result.ingest?.ok) {
+        setRefreshNote('Data refreshed and cached on server.')
+      } else if (result.ingest?.error) {
         setRefreshNote(
-          `Data refreshed locally. GitHub save skipped: ${result.github.error}`,
+          `Data refreshed. Server cache note: ${result.ingest.error}`,
         )
       } else {
         setRefreshNote('Data refreshed.')
@@ -153,7 +152,6 @@ export function DashboardPage() {
 
   function handleLogout() {
     logout()
-    navigate('/', { replace: true })
   }
 
   function handleYearChange(nextYear: number) {
