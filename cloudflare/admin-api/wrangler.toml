@@ -1,0 +1,30 @@
+name = "nka-admin-api"
+main = "src/index.ts"
+compatibility_date = "2025-04-01"
+workers_dev = true
+
+routes = [
+  { pattern = "narendravaluers.in/admin-api/*", zone_name = "narendravaluers.in" }
+]
+
+# Create with: npx wrangler kv namespace create SNAPSHOTS
+# Then paste the ids below (preview id optional for local).
+[[kv_namespaces]]
+binding = "SNAPSHOTS"
+id = "2b9214e8ca32499b95cf8a8568f1bc32"
+preview_id = "841d2d3cefe847f2a3451b595eb2a5da"
+
+# Attach in Cloudflare dashboard (or uncomment after zone is on Cloudflare):
+# routes = [
+#   { pattern = "narendravaluers.in/admin-api/*", zone_name = "narendravaluers.in" }
+# ]
+
+[vars]
+ALLOW_DEV_BYPASS = "0"
+
+# Secrets (set via `npx wrangler secret put <NAME>`):
+#   SHEETS_PROXY_URL   — Apps Script /exec URL
+#   PROXY_KEY          — same as Apps Script PROXY_KEY
+#   CF_ACCESS_TEAM_DOMAIN — e.g. yourteam.cloudflareaccess.com
+#   CF_ACCESS_AUD      — Application Audience (AUD) tag from Access app
+#   INGEST_SECRET      — shared secret for Apps Script daily ingest

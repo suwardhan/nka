@@ -4,7 +4,7 @@ Static marketing site for Government Registered Valuers and Chartered Engineers.
 
 ## Admin dashboard
 
-A passcode-gated React admin app lives in [`admin-app/`](admin-app/).
+Passcode-free admin UI in [`admin-app/`](admin-app/), protected by **Cloudflare Access**. Data is served by a **Cloudflare Worker** ([`cloudflare/admin-api/`](cloudflare/admin-api/)) that talks to Google Apps Script ([`apps-script/`](apps-script/)). Snapshot JSON is **not** published under `/admin/data`.
 
 ```bash
 cd admin-app
@@ -13,8 +13,10 @@ npm install
 npm run dev
 ```
 
-Then open `http://localhost:5173/admin/`.
+Open `http://localhost:5173/admin/` (point `VITE_ADMIN_API_URL` at local `wrangler dev` — see Worker README).
 
-Private spreadsheet data is read through a Google Apps Script proxy — see [`apps-script/`](apps-script/).
+Production: https://narendravaluers.in/admin/ (after Access login).
+
+Operator runbook: [`cloudflare/admin-api/README.md`](cloudflare/admin-api/README.md).
 
 Copyright 2020 Narendra Ahirrao and Associates.

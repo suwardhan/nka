@@ -1,9 +1,8 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  readonly VITE_ADMIN_PASSCODE: string
-  readonly VITE_SHEETS_PROXY_URL: string
-  readonly VITE_SHEETS_PROXY_KEY: string
+  /** Base URL for the Cloudflare Worker admin API (no trailing slash). */
+  readonly VITE_ADMIN_API_URL: string
 }
 
 interface ImportMeta {

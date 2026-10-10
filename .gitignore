@@ -2,11 +2,14 @@
 node_modules/
 admin-app/node_modules/
 admin-app/dist/
+cloudflare/admin-api/node_modules/
+cloudflare/admin-api/.wrangler/
 
 # secrets / local env
 admin-app/.env
 admin-app/.env.*
 !admin-app/.env.example
+cloudflare/admin-api/.dev.vars
 
 # OS / editor
 .DS_Store
