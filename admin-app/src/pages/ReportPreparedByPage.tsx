@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 
-import { AdminHeader } from '@/components/AdminHeader'
+import { AdminShell } from '@/components/AdminHeader'
 import { HorizontalCountChart } from '@/components/HorizontalCountChart'
 import { Button } from '@/components/ui/button'
 import {
@@ -70,15 +70,14 @@ export function ReportPreparedByPage() {
   const totalReports = data.reduce((sum, row) => sum + row.count, 0)
 
   return (
-    <div className="min-h-screen bg-muted/30">
-      <AdminHeader
-        title="All Report prepared by"
-        actions={
-          <Button asChild variant="outline">
-            <Link to={`/dashboard?year=${year}`}>Back to dashboard</Link>
-          </Button>
-        }
-      />
+    <AdminShell
+      title="All Report prepared by"
+      actions={
+        <Button asChild variant="outline" size="sm" className="h-8 px-2.5">
+          <Link to={`/dashboard?year=${year}`}>Back to dashboard</Link>
+        </Button>
+      }
+    >
 
       <main className="mx-auto max-w-6xl space-y-6 px-4 py-6">
         <Card>
@@ -119,6 +118,6 @@ export function ReportPreparedByPage() {
           </CardContent>
         </Card>
       </main>
-    </div>
+    </AdminShell>
   )
 }

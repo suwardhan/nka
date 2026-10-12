@@ -4,10 +4,10 @@ import {
   useMemo,
   useState,
 } from 'react'
-import { ExternalLink, FileText, X } from 'lucide-react'
+import { ExternalLink, FileText, Search, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-import { AdminHeader } from '@/components/AdminHeader'
+import { AdminShell } from '@/components/AdminHeader'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -400,15 +400,14 @@ export function SearchPage() {
   const showResults = results.length > 0
 
   return (
-    <div className="min-h-screen bg-muted/30">
-      <AdminHeader
-        title="Search cases"
-        actions={
-          <Button asChild variant="outline">
-            <Link to="/dashboard">Back to dashboard</Link>
-          </Button>
-        }
-      />
+    <AdminShell
+      title="Search cases"
+      actions={
+        <Button asChild variant="outline" size="sm" className="h-8 px-2.5">
+          <Link to="/dashboard">Back to dashboard</Link>
+        </Button>
+      }
+    >
 
       <main
         className={cn(
@@ -426,16 +425,23 @@ export function SearchPage() {
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <Input
-              value={query}
-              onChange={(event) => {
-                setQuery(event.target.value)
-                setPage(1)
-              }}
-              placeholder="Applicant, address, or project…"
-              aria-label="Search cases"
-              autoFocus
-            />
+            <div className="relative">
+              <Input
+                value={query}
+                onChange={(event) => {
+                  setQuery(event.target.value)
+                  setPage(1)
+                }}
+                placeholder="Applicant, address, or project…"
+                aria-label="Search cases"
+                autoFocus
+                className="pr-10"
+              />
+              <Search
+                className="pointer-events-none absolute top-1/2 right-3 size-4 -translate-y-1/2 text-muted-foreground"
+                aria-hidden="true"
+              />
+            </div>
 
             {notes.length > 0 ? (
               <div className="space-y-1 text-sm text-muted-foreground">
@@ -581,7 +587,7 @@ export function SearchPage() {
                 </div>
 
                 {isDesktop ? (
-                  <div className="sticky top-4 self-start lg:h-[calc(100vh-6rem)]">
+                  <div className="sticky top-[calc(var(--admin-header-height)+1rem)] self-start lg:h-[calc(100vh-var(--admin-header-height)-6rem)]">
                     <ReportPreviewPanel
                       report={selectedReport}
                       onClose={() => setSelectedReport(null)}
@@ -599,6 +605,6 @@ export function SearchPage() {
           columns are confirmed.
         </p>
       </main>
-    </div>
+    </AdminShell>
   )
 }
