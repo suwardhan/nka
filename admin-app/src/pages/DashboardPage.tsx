@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Search } from 'lucide-react'
 import { Link, useSearchParams } from 'react-router-dom'
 
-import { AdminHeader } from '@/components/AdminHeader'
+import { AdminShell } from '@/components/AdminHeader'
 import { HorizontalCountChart } from '@/components/HorizontalCountChart'
 import { YearTabs } from '@/components/YearTabs'
 import { Button } from '@/components/ui/button'
@@ -38,6 +38,7 @@ export function DashboardPage() {
   const [snapshot, setSnapshot] = useState<DashboardSnapshot | null>(null)
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false)
+  const logoutDialogRef = useRef<HTMLDialogElement>(null)
   const [error, setError] = useState<string | null>(null)
   const [refreshNote, setRefreshNote] = useState<string | null>(null)
 
@@ -159,23 +160,28 @@ export function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-muted/30">
-      <AdminHeader
-        title="Admin dashboard"
-        actions={
-          <div className="flex items-center gap-2">
-            <Button asChild variant="outline">
-              <Link to="/dashboard/search">
-                <Search />
-                Search cases
-              </Link>
-            </Button>
-            <Button variant="outline" onClick={handleLogout}>
-              Sign out
-            </Button>
-          </div>
-        }
-      />
+    <>
+    <AdminShell
+      title="Admin dashboard"
+      actions={
+        <div className="flex items-center gap-2">
+          <Button asChild variant="outline" size="sm" className="h-8 px-2.5">
+            <Link to="/dashboard/search">
+              <Search />
+              Search cases
+            </Link>
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            className="h-8 px-2.5"
+            onClick={() => logoutDialogRef.current?.showModal()}
+          >
+            Sign out
+          </Button>
+        </div>
+      }
+    >
 
       <main className="mx-auto max-w-6xl space-y-6 px-4 py-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
@@ -339,6 +345,38 @@ export function DashboardPage() {
           </div>
         ) : null}
       </main>
-    </div>
+    </AdminShell>
+    <dialog
+      ref={logoutDialogRef}
+      aria-labelledby="sign-out-title"
+      className="fixed top-1/2 left-1/2 w-full max-w-sm -translate-x-1/2 -translate-y-1/2 rounded-xl border bg-card p-6 text-card-foreground shadow-lg backdrop:bg-black/40"
+    >
+      <h2 id="sign-out-title" className="text-base font-semibold">
+        Sign out?
+      </h2>
+      <p className="mt-2 text-sm text-muted-foreground">
+        You will need to sign in again to open the admin dashboard.
+      </p>
+      <form method="dialog" className="mt-6 flex justify-end gap-2">
+        <Button
+          type="submit"
+          variant="outline"
+          size="sm"
+          className="h-8 px-2.5"
+        >
+          Cancel
+        </Button>
+        <Button
+          type="button"
+          variant="destructive"
+          size="sm"
+          className="h-8 px-2.5"
+          onClick={handleLogout}
+        >
+          Sign out
+        </Button>
+      </form>
+    </dialog>
+    </>
   )
 }
